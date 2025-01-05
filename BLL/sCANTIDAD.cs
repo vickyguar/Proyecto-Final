@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 
-//TODO: no hace falta ni expllicar
+
 namespace BLL
 {
 	public struct sCANTIDAD {
@@ -11,4 +11,12 @@ namespace BLL
 		private float Magnitud;
 		private string Unidad;
 	}
+	/* sCANTIDAD se utiliza en los diversos tratamientos
+	 * RAYOS -> dosis total, velocidad de entrega, energia de RX
+	 * CIRUGIA -> % extirpado
+	 * INYECCION -> dosis total en mg/kg
+	 * MICELA -> concentracion de droga x micela
+	*/
+
+	//TODO: DEFINIR EL TO STRING PARA SCANTIDAD
 }
