@@ -4,15 +4,27 @@ using System.Text;
 using System.IO;
 
 namespace BLL
-{
+{ 
+    namespace BLL_Entidades
+    {
+        public class PAPER_Ent
+        {
+            public uint id { get; set; }
+            public string Titulo { get; set; }
+            public string Link { get; set; }
+            public ePUBLICADO Publicado { get; set; }
+            public bool Eliminado { get; set; }
+        }
+
+    }
     namespace BLL_Clases
-    { 
+    {
         public class PAPER_BLL
-        { 
-            public int AgregarUno(uint id, string titulo, string link, ePUBLICADO publicado=0)
+        {
+            public int AgregarUno(uint id, string titulo, string link, ePUBLICADO publicado = 0, bool eliminado=false)
             {
                 BLL_Map.PAPER_Map map = new BLL_Map.PAPER_Map();
-                int resultado = map.AgregarUno(id, titulo, link, publicado);
+                int resultado = map.AgregarUno(id, titulo, link, publicado, eliminado);
                 map = null;
                 return resultado;
             }
@@ -57,24 +69,42 @@ namespace BLL
                 map = null;
                 return l;
             }
-        }
-    }
-    namespace BLL_Entidades
-    {
-        public class PAPER_Ent
-        {
-            private uint id;
-            private string Titulo;
-            private string Link;
-            private BLL.ePUBLICADO Publicado;
-        }
+            public string[] DevolverDatos(uint id)
+            {
+                BLL.BLL_Entidades.PAPER_Ent a = this.BuscarUno(id);
+                string[] datos = { a.Titulo, a.Link, a.Publicado.ToString(), a.Eliminado.ToString(), "Paper" };
+                return datos;
+            }
 
+            public int ModificarUno(int id, string titulo, string link, uint publicado)
+            {
+                BLL_Map.PAPER_Map map = new BLL_Map.PAPER_Map();
+                int resultado = map.ModificarUno(id, titulo, link, publicado);
+                map = null;
+                return resultado;
+            }
+
+            public int BorrarUno(int id)
+            {
+                BLL_Map.PAPER_Map map = new BLL_Map.PAPER_Map();
+                int resultado = map.BorrarUno(id);
+                map = null;
+                return resultado;
+            }
+            public int DeshacerBorrarUno(int id)
+            {
+                BLL_Map.PAPER_Map map = new BLL_Map.PAPER_Map();
+                int resultado = map.DeshacerBorrarUno(id);
+                map = null;
+                return resultado;
+            }
+        }
     }
     namespace BLL_Map
     { 
         public class PAPER_Map
         {
-            public int AgregarUno(uint id, string titulo, string link, ePUBLICADO publicado = 0)
+            public int AgregarUno(uint id, string titulo, string link, ePUBLICADO publicado, bool eliminado)
             {
                 return 1;
             }
@@ -98,6 +128,19 @@ namespace BLL
             public List<BLL_Entidades.PAPER_Ent> BuscarTodos(ePUBLICADO publicado)
             {
                 return null;
+            }
+            public int ModificarUno(int id, string titulo, string link, uint publicado)
+            {
+                return 1;
+            }
+
+            public int BorrarUno(int id)
+            {
+                return 1;
+            }
+            public int DeshacerBorrarUno(int id)
+            {
+                return 1;
             }
         }
     }
