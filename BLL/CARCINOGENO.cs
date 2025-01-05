@@ -11,7 +11,8 @@ namespace BLL
 
     namespace BLL_CLASS
     {
-        public class CARCINOGENO_CLASS : INOCULACION
+        //TODO: agregar que carcinogeno hereda de inoculacion
+        public class CARCINOGENO_CLASS
         {
             public BLL_ENTITY.CARCINOGENO_ENT BuscarUno(uint id)
             {

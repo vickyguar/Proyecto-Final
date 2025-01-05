@@ -45,6 +45,7 @@
     <Compile Include="CELULA.cs" />
     <Compile Include="CEPA.cs" />
     <Compile Include="CIRUGIA.cs" />
+    <Compile Include="ePUBLCIADO.cs" />
     <Compile Include="DONANTE.cs" />
     <Compile Include="eADMINISTRACION.cs" />
     <Compile Include="eESTADO.cs" />

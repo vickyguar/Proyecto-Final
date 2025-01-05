@@ -11,7 +11,7 @@ namespace BLL
         private DateTime FechaFin;
         private string Titulo;
 
-        private List<INOCULACION> Inoculaciones;
+        private List<BLL.BLL_Entidades.INOCULACION> Inoculaciones;
         private List<TRATAMIENTO> Tratamientos;
 
         #region FUNCIONES p LISTAS
@@ -67,7 +67,7 @@ namespace BLL
         #endregion
 
         public EXPERIMENTO() {
-            Inoculaciones = new List<INOCULACION>();
+            Inoculaciones = new List<BLL.BLL_Entidades.INOCULACION>();
             Tratamientos = new List<TRATAMIENTO>();
         }
     }
