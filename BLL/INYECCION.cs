@@ -12,17 +12,17 @@ namespace BLL
     {
         public class INYECCION_Ent
         {
-            public uint id;
-            public sCANTIDAD Dosis; // aca es la dosis mg/kg
-            public string Observacion;
+            public uint id { get; set; }
+            public sCANTIDAD Dosis { get; set; } // aca es la dosis mg/kg
+            public string Observacion { get; set; }
 
-            public eADMINISTRACION Administracion;
-            public uint id_Droga;
-            public uint id_Vehiculo; //TODO: vuela?
-            public uint id_Experimento;
-            public uint id_Micela;
+            public eADMINISTRACION Administracion { get; set; }
+            public uint id_Droga { get; set; }
+            public uint id_Vehiculo { get; set; } //TODO: vuela?
+            public uint id_Experimento { get; set; }
+            public uint id_Micela { get; set; }
 
-            public bool Eliminado;
+            public bool Eliminado { get; set; }
         }
 
     }

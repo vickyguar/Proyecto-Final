@@ -10,14 +10,14 @@ namespace BLL {
     {
         public class CIRUGIA_Ent
         {
-            public uint id;
-            public sCANTIDAD PorcentajeExtirpado; // aca es la dosis mg/kg
-            public DateTime FechaCirugia;
-            public string Observacion;
+            public uint id { get; set; }
+            public sCANTIDAD PorcentajeExtirpado { get; set; } // aca es la dosis mg/kg
+            public DateTime FechaCirugia { get; set; }
+            public string Observacion { get; set; }
 
-            public uint id_Experimento;
+            public uint id_Experimento { get; set; }
 
-            public bool Eliminado;
+            public bool Eliminado { get; set; }
         }
     }
 
