@@ -5,36 +5,50 @@ using System.IO;
 
 namespace BLL
 {
-	public class SEGUIMIENTO {
+	namespace BLL_Entidades
+	{
+		public class SEGUIMIENTO_Ent
+        {
+			public uint id { get; set; }
+			public DateTime FechaSeguimiento { get; set; }
+			public float PesoRaton { get; set; }
+			public float TamanoRaton { get; set; }
+			public float VolumenTumor { get; set; }
 
-        private uint id;
-        private DateTime FechaSeguimiento;
-		private float PesoRaton;
-		private float TamanoRaton;
-		private float VolumenTumor;
+			//foreign keys
+			public uint id_Raton { get; set; }
+			public uint id_Experimento { get; set; }
+		
+			public bool Eliminado { get; set; }
+		}
+	}
+	namespace BLL_Clases
+	{
+		public class SEGUIMIENTO_BLL
+        {
 
-        #region GETTERS & SETTERS
-        public uint GetId() { return id; }
-		public void SetId(uint _id) { id = _id; return; }
-		public DateTime GetFechaSeguimiento() {  return FechaSeguimiento; }
-		public void SetFechaSeguimiento(DateTime fechita) { FechaSeguimiento = fechita; return; }
-		public float GetPesoRaton() {  return PesoRaton; }
-		public void SetPesoRaton(float pesoRaton) {PesoRaton = pesoRaton; return; }
-		public float GetTamanoRaton() { return TamanoRaton; }
-		public void SetTamanoRaton(float tamanoRaton) {TamanoRaton = tamanoRaton; return; }
-		public float GetVolumenTumor() {  return VolumenTumor; }
-		public void SetVolumenTumor(float volumenTumor) { VolumenTumor = volumenTumor; return; }
-        #endregion
+			public int CalcularVolumen(float a, float b)
+			{
+				float volumenTumor;
+				volumenTumor = (float)Math.PI * (float)Math.Pow(a + b, 2) / 12; //TODO: no era asi, pero me lo imaginé
 
-        public SEGUIMIENTO() {
+				BLL_Map.SEGUIMIENTO_Map map = new BLL_Map.SEGUIMIENTO_Map();
+				int resultado = map.SetVolumenTumor(volumenTumor);
+				map = null;
+				return resultado;
+			}
+
 
 		}
-
-		//TODO: ahre esta funcion
-		public void CalcularVolumen(float a, float b) {
-			float volumenTumor;
-			volumenTumor = (float)Math.PI * (float)Math.Pow(a + b, 2) / 12; //TODO: no era asi, pero me lo imaginé
-			SetVolumenTumor(volumenTumor);
-		}
+	}
+	namespace BLL_Map
+	{
+		public class SEGUIMIENTO_Map
+        {
+			public int SetVolumenTumor(float volumen_tumor)
+            {
+				return 1;
+            }
+        }
 	}
 }

@@ -6,29 +6,37 @@ using System.Text;
 
 namespace BLL
 {
-    public class INVESTIGADOR {
-        
-        public uint id;
-        public string Usuario; //:::
-        public string Contrasena;   //::: Agregué estos dos acá para validar
-        private string Nombre;
-        private string Apellido;
-        private string Email;
+    namespace BLL_Entidades
+    {
+        public class INVESTIGADOR_Ent
+        {
+            public uint id { get; set; }
+            public string Nombre { get; set; }
+            public string Apellido { get; set; }
+            public string Email { get; set; }
 
-        #region GETTERS & SETTERS
-        public uint GetId() { return id; }
-        public void SetId(uint _id) { id = _id; return; }
-        public string GetNombre() { return Nombre; }
-        public void SetNombre(string nombre) { Nombre = nombre; return; }
-        public string GetApellido() { return Apellido; }
-        public void SetApellido(string apellido) { Apellido = apellido; return; }
-        public string GetEmail() { return Email; }
-        public void SetEmail(string email) { Email = email; return; }
-        #endregion
+            //foreign keys
+            public List<uint> id_Proyecto { get; set; }
 
-        // Completar
+            //TODO: Agregué estos dos acá para validar.
+            private string Usuario { get; set; }
+            private string Contrasena { get; set; } 
+            private uint Administrador { get; set; }
 
-        public INVESTIGADOR() {
+            public bool Eliminado { get; set; }
+        }
+    }
+    namespace BLL_Clases
+    {
+        public class INVESTIGADOR_BLL
+        {
+
+        }
+    }
+    namespace BLL_Map
+    {
+        public class INVESTIGADOR_Map
+        {
 
         }
     }
