@@ -11,10 +11,20 @@ namespace BLL
     {
         public class PROYECTO_CLASS
         {
+            // CREATE
+            
+            // READ
             public BLL_ENTITY.PROYECTO_ENT BuscarUno(uint id)
             {
                 BLL_MAP.PROYECTO_MAP map = new BLL_MAP.PROYECTO_MAP();
                 BLL_ENTITY.PROYECTO_ENT ent = map.BuscarUno(id);
+                map = null;
+                return ent;
+            }
+            public BLL_ENTITY.PROYECTO_ENT BuscarUno(string Titulo)
+            {
+                BLL_MAP.PROYECTO_MAP map = new BLL_MAP.PROYECTO_MAP();
+                BLL_ENTITY.PROYECTO_ENT ent = map.BuscarUno(Titulo);
                 map = null;
                 return ent;
             }
@@ -25,10 +35,41 @@ namespace BLL
                 map = null;
                 return lista;
             }
+            public List<BLL_ENTITY.PROYECTO_ENT> BuscarTodos(string Tema)
+            {
+                BLL_MAP.PROYECTO_MAP map = new BLL_MAP.PROYECTO_MAP();
+                List<BLL_ENTITY.PROYECTO_ENT> lista = map.BuscarTodos(Tema);
+                map = null;
+                return lista;
+            }
+            public List<BLL_ENTITY.PROYECTO_ENT> BuscarTodos(eESTADO Estado)
+            {
+                BLL_MAP.PROYECTO_MAP map = new BLL_MAP.PROYECTO_MAP();
+                List<BLL_ENTITY.PROYECTO_ENT> lista = map.BuscarTodos(Estado);
+                map = null;
+                return lista;
+            }
 
-            // public int DeshacerBorrarUno(uint id)
-            // public int AgregarUno(uint id, string nombre)
-            // public int ModificarUno(uint id, string nombre)
+            //TODO: Buscar por FechaInicio y FechaFin
+
+            // UPDATE
+            public int Actualizar(uint id, string Titulo, string Tema, DateTime FechaInicio, DateTime FechaFin, eESTADO Estado)
+            {
+                BLL_MAP.PROYECTO_MAP map = new BLL_MAP.PROYECTO_MAP();
+                int resultado = map.Actualizar(id, Titulo, Tema, FechaInicio, FechaFin, Estado);
+                map = null;
+                return resultado;
+            }
+
+            // DELETE
+            public int Eliminar(uint id, uint deleted)
+            {
+                BLL_MAP.PROYECTO_MAP map = new BLL_MAP.PROYECTO_MAP();
+                int resultado = map.Eliminar(id, deleted);
+                map = null;
+                return resultado;
+            }
+
         }
     }
 
@@ -37,6 +78,7 @@ namespace BLL
         public class PROYECTO_ENT
         {
             public string Titulo { get; set; }
+            public string Tema { get; set; }
             public DateTime FechaInicio { get; set; }
             public DateTime FechaFin { get; set; }
             public eESTADO Estado { get; set; }
@@ -47,7 +89,7 @@ namespace BLL
 
     namespace BLL_MAP
     {
-        class PROYECTO_MAP
+        public class PROYECTO_MAP
         {
             public BLL_ENTITY.PROYECTO_ENT BuscarUno(uint id)
             {
@@ -58,28 +100,51 @@ namespace BLL
 
                 // Procedimiento almacenado (SP)
                 SqlCommand cmd = new SqlCommand();
-                SqlParameter param = new SqlParameter();
                 cmd.CommandText = "PROYECTO_BuscarUno";// Nombre del SP → SELECT * FROM PROYECTO WHERE id = @id;
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = conn;
-                param.Value = id;
-                param.DbType = DbType.UInt32;
-                param.ParameterName = "ID";
-                cmd.Parameters.Add(param);
+                cmd.Parameters.Add("id", SqlDbType.Int); // TODO: chequear tipo de dato
+                cmd.Parameters["id"].Value = id;
 
                 // Ejecuto el SP y se obtengo la DataTable
                 DataTable dt = sql.EjecutarSQL_DT(cmd);
                 sql.CerrarConexion(conn); // Cierro conexión
 
-                // Casteo la DataTable a una lista de CARCINOGENO_ENT
+                // Casteo la DataTable a una lista de PROYECTO_ENT
                 List<BLL_ENTITY.PROYECTO_ENT> lista = new List<BLL_ENTITY.PROYECTO_ENT>();
                 lista = CastDataToEntity(dt);
 
-                // Retorna el elemento encontrado (que debe ser único)
+                // Retorna el elemento encontrado (que debería ser único)
                 if (lista.Count > 0) return lista[0];
                 else return null;
             }
+            public BLL_ENTITY.PROYECTO_ENT BuscarUno(string Titulo)
+            {
+                // Instancio la capa DAL y se abre una conexión a la BD (UCA)
+                DAL.sqlServer sql = new DAL.sqlServer();
+                SqlConnection conn = new SqlConnection();
+                conn = sql.AbrirConexion(conn);
 
+                // Procedimiento almacenado (SP)
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = "PROYECTO_BuscarUnoPorTitulo";// Nombre del SP → SELECT * FROM PROYECTO WHERE Titulo = @Titulo;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Connection = conn;
+                cmd.Parameters.Add("Titulo", SqlDbType.VarChar, 200); // TODO: chequear tipo de dato
+                cmd.Parameters["Titulo"].Value = Titulo;
+
+                // Ejecuto el SP y se obtengo la DataTable
+                DataTable dt = sql.EjecutarSQL_DT(cmd);
+                sql.CerrarConexion(conn); // Cierro conexión
+
+                // Casteo la DataTable a una lista de PROYECTO_ENT
+                List<BLL_ENTITY.PROYECTO_ENT> lista = new List<BLL_ENTITY.PROYECTO_ENT>();
+                lista = CastDataToEntity(dt);
+
+                // Retorna el elemento encontrado (que debería ser único)
+                if (lista.Count > 0) return lista[0];
+                else return null;
+            }
             public List<BLL_ENTITY.PROYECTO_ENT> BuscarTodos()
             {
                 // Instancio la capa DAL y se abro una conexión a la BD (UCA)
@@ -105,7 +170,109 @@ namespace BLL
                 if (lista.Count > 0) return lista;
                 else return null;
             }
+            public List<BLL_ENTITY.PROYECTO_ENT> BuscarTodos(string Tema)
+            {
+                // Instancio la capa DAL y se abre una conexión a la BD (UCA)
+                DAL.sqlServer sql = new DAL.sqlServer();
+                SqlConnection conn = new SqlConnection();
+                conn = sql.AbrirConexion(conn);
 
+                // Procedimiento almacenado (SP)
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = "PROYECTO_BuscarPorTema";// Nombre del SP → SELECT * FROM PROYECTO WHERE Tema = @Tema;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Connection = conn;
+                cmd.Parameters.Add("Tema", SqlDbType.VarChar, 200); // TODO: chequear tipo de dato
+                cmd.Parameters["Tema"].Value = Tema;
+
+                // Ejecuto el SP y se obtengo la DataTable
+                DataTable dt = sql.EjecutarSQL_DT(cmd);
+                sql.CerrarConexion(conn); // Cierro conexión
+
+                // Casteo la DataTable a una lista de PROYECTO_ENT
+                List<BLL_ENTITY.PROYECTO_ENT> lista = new List<BLL_ENTITY.PROYECTO_ENT>();
+                lista = CastDataToEntity(dt);
+
+                // Retorna el elemento encontrado (que debe ser único)
+                if (lista.Count > 0) return lista;
+                else return null;
+            }
+            public List<BLL_ENTITY.PROYECTO_ENT> BuscarTodos(eESTADO Estado)
+            {
+                // Instancio la capa DAL y se abre una conexión a la BD (UCA)
+                DAL.sqlServer sql = new DAL.sqlServer();
+                SqlConnection conn = new SqlConnection();
+                conn = sql.AbrirConexion(conn);
+
+                // Procedimiento almacenado (SP)
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = "PROYECTO_BuscarPorEstado";// Nombre del SP → SELECT * FROM PROYECTO WHERE Estado = @Estado;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Connection = conn;
+                cmd.Parameters.Add("Estado", SqlDbType.Int);
+                cmd.Parameters["Estado"].Value = Estado;
+
+                // Ejecuto el SP y se obtengo la DataTable
+                DataTable dt = sql.EjecutarSQL_DT(cmd);
+                sql.CerrarConexion(conn); // Cierro conexión
+
+                // Casteo la DataTable a una lista de PROYECTO_ENT
+                List<BLL_ENTITY.PROYECTO_ENT> lista = new List<BLL_ENTITY.PROYECTO_ENT>();
+                lista = CastDataToEntity(dt);
+
+                // Retorna el elemento encontrado (que debe ser único)
+                if (lista.Count > 0) return lista;
+                else return null;
+            }
+            public int Actualizar(uint id, string Titulo, string Tema, DateTime FechaInicio, DateTime FechaFin, eESTADO Estado)
+            {
+                DAL.sqlServer sqlServer = new DAL.sqlServer();
+                SqlConnection Conn = new SqlConnection();
+                Conn = sqlServer.AbrirConexion(Conn);
+
+                SqlCommand Cmd = new SqlCommand();
+                Cmd.CommandText = "PROYECTO_Actualizar";
+                Cmd.CommandType = CommandType.StoredProcedure;
+
+                Cmd.Connection = Conn;
+                Cmd.Parameters.Add("id", SqlDbType.Int);
+                Cmd.Parameters["id"].Value = id;
+                Cmd.Parameters.Add("Titulo", SqlDbType.VarChar, 200);
+                Cmd.Parameters["Titulo"].Value = Titulo;
+                Cmd.Parameters.Add("Tema", SqlDbType.VarChar, 200);
+                Cmd.Parameters["Tema"].Value = Tema;
+                Cmd.Parameters.Add("FechaInicio", SqlDbType.DateTime);
+                Cmd.Parameters["FechaInicio"].Value = FechaInicio;
+                Cmd.Parameters.Add("FechaFin", SqlDbType.DateTime);
+                Cmd.Parameters["FechaFin"].Value = FechaFin;
+                Cmd.Parameters.Add("Estado", SqlDbType.Int);
+                Cmd.Parameters["Estado"].Value = Estado;
+
+                int resultado = sqlServer.EjecutarSQL_Int(Cmd);
+                sqlServer.CerrarConexion(Conn);
+                return resultado;
+            }
+            public int Eliminar(uint id, uint deleted)
+            {
+                DAL.sqlServer sqlServer = new DAL.sqlServer();
+                SqlConnection Conn = new SqlConnection();
+                Conn = sqlServer.AbrirConexion(Conn);
+
+                SqlCommand Cmd = new SqlCommand();
+                Cmd.CommandText = "PROYECTO_Eliminar";
+                Cmd.CommandType = CommandType.StoredProcedure;
+
+                Cmd.Connection = Conn;
+                Cmd.Parameters.Add("id", SqlDbType.Int);
+                Cmd.Parameters["id"].Value = id;
+                Cmd.Parameters.Add("deleted", SqlDbType.Int);
+                Cmd.Parameters["deleted"].Value = deleted;
+
+
+                int resultado = sqlServer.EjecutarSQL_Int(Cmd);
+                sqlServer.CerrarConexion(Conn);
+                return resultado;
+            }
             private List<BLL_ENTITY.PROYECTO_ENT> CastDataToEntity(DataTable dt)
             {
                 List<BLL_ENTITY.PROYECTO_ENT> lista = new List<BLL_ENTITY.PROYECTO_ENT>();
@@ -125,6 +292,7 @@ namespace BLL
                         ent.Estado = (eESTADO)Enum.Parse(typeof(eESTADO), dr["Estado"].ToString());
                         ent.FechaInicio = DateTime.Parse(dr["FechaInicio"].ToString());
                         ent.FechaFin = DateTime.Parse(dr["FechaFin"].ToString());
+                        ent.Tema = dr["Tema"].ToString();
                         ent.deleted = uint.Parse(dr["deleted"].ToString());
 
                         // Agrego la entidad a la lista
