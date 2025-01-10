@@ -88,12 +88,12 @@ namespace BLL
     {
         public class PROYECTO_ENT
         {
+            public uint id { get; set; }
             public string Titulo { get; set; }
             public string Tema { get; set; }
             public DateTime FechaInicio { get; set; }
             public DateTime FechaFin { get; set; }
             public eESTADO Estado { get; set; }
-            public uint id { get; set; }
             public uint deleted { get; set; }
         }
     }
@@ -102,6 +102,26 @@ namespace BLL
     {
         public class PROYECTO_MAP
         {
+            public int Agregar(string Titulo, string Tema, DateTime FechaInicio, DateTime FechaFin, eESTADO Estado)
+            {
+                DAL.sqlServer sqlServer = new DAL.sqlServer();
+                SqlConnection Conn = new SqlConnection();
+                Conn = sqlServer.AbrirConexion(Conn);
+
+                SqlCommand Cmd = new SqlCommand();
+                Cmd.CommandText = "PROYECCTO_Agregar";
+                Cmd.CommandType = CommandType.StoredProcedure;
+
+                Cmd.Connection = Conn;
+                /* ACA AGREGAR TODOS LOS PARAMETROS ...
+                Cmd.Parameters.Add("Titulo", SqlDbType.VarChar, 200); //TODO: chequear longitud
+                Cmd.Parameters["Titulo"].Value = Titulo;
+                */
+
+                int resultado = sqlServer.EjecutarSQL_Int(Cmd);
+                sqlServer.CerrarConexion(Conn);
+                return resultado;
+            }
             public BLL_ENTITY.PROYECTO_ENT BuscarUno(uint id)
             {
                 // Instancio la capa DAL y se abre una conexión a la BD (UCA)
