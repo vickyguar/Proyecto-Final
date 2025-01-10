@@ -11,8 +11,19 @@ namespace BLL
     {
         public class PROYECTO_CLASS
         {
-            // CREATE
-            
+            // CREATE 
+            // TODO: ver si es posible (lo mismo aplica en todas las clases para hacer el 'Agregar')
+            //      - el id no se lo paso porque quizás se pueda tildar autoincremental
+            //      - el deleted no se lo paso porque porque quizás se pueda tildar default value 0
+            //      - el Estado no se lo paso porque quizás se pueda tildar default value 0
+            public int Agregar(string Titulo, string Tema, DateTime FechaInicio, DateTime FechaFin, eESTADO Estado)
+            {
+                BLL_MAP.PROYECTO_MAP map = new BLL_MAP.PROYECTO_MAP();
+                int resultado = map.Agregar(Titulo, Tema, FechaInicio, FechaFin, Estado);
+                map = null;
+                return resultado;
+            }
+
             // READ
             public BLL_ENTITY.PROYECTO_ENT BuscarUno(uint id)
             {

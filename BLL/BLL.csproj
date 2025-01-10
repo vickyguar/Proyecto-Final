@@ -50,7 +50,6 @@
     <Compile Include="eESTADO.cs" />
     <Compile Include="eGENERO.cs" />
     <Compile Include="ePUBLICADO.cs" />
-    <Compile Include="EQUIPO.cs" />
     <Compile Include="EXPERIMENTO.cs" />
     <Compile Include="GENOTIPO.cs" />
     <Compile Include="INOCULACION.cs" />
@@ -67,7 +66,6 @@
     <Compile Include="PROYECTO.cs" />
     <Compile Include="RATON.cs" />
     <Compile Include="RAYOS.cs" />
-    <Compile Include="RESULTADO.cs" />
     <Compile Include="sCANTIDAD.cs" />
     <Compile Include="SEGUIMIENTO.cs" />
     <Compile Include="TECNICA.cs" />
