@@ -2,13 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
-//TODO: Resolver acá
-// No tiene id porque lo hereda de tratamiento?
-// unidad mg/kg en caso de MICELAS
 
 namespace BLL
 {
-    namespace BLL_Entidades
+    namespace BLL_ENTITY
     {
         public class INYECCION_Ent
         {
@@ -17,71 +14,72 @@ namespace BLL
             public string Observacion { get; set; }
 
             public eADMINISTRACION Administracion { get; set; }
-            public uint id_Droga { get; set; }
-            public uint id_Vehiculo { get; set; } //TODO: vuela?
-            public uint id_Experimento { get; set; }
-            public uint id_Micela { get; set; }
+            public sCANTIDAD PeriodoTratamiento { get; set; }
+            public uint idDroga { get; set; }
+            public uint idVehiculo { get; set; } //TODO: vuela?
+            public uint idExperimento { get; set; }
+            public uint idMicela { get; set; }
 
             public bool Eliminado { get; set; }
         }
 
     }
     
-    namespace BLL_Clases
+    namespace BLL_CLASS
     {
-        public class INYECCION_BLL : ITRATAMIENTO<BLL_Entidades.INYECCION_Ent>
+        public class INYECCION_BLL : ITRATAMIENTO<BLL_ENTITY.INYECCION_Ent>
         {
-            int AgregarUno(uint id, sCANTIDAD tratamiento, string observacion, eADMINISTRACION admin, uint id_droga, uint id_vehiculo, uint id_experimento)
+            int Agregar(sCANTIDAD tratamiento, string observacion, eADMINISTRACION admin, uint id_droga, uint id_vehiculo, uint id_experimento)
             {
-                BLL_Map.INYECCION_Map map = new BLL_Map.INYECCION_Map();
-                int resultado = map.AgregarUno(id, tratamiento, observacion, admin, id_droga, id_vehiculo, id_experimento);
+                BLL_MAP.INYECCION_Map map = new BLL_MAP.INYECCION_Map();
+                int resultado = map.Agregar(tratamiento, observacion, admin, id_droga, id_vehiculo, id_experimento);
                 map = null;
                 return resultado;
             }
 
             int ModificarUno(uint id, sCANTIDAD tratamiento, string observacion, eADMINISTRACION admin, uint id_droga, uint id_vehiculo, uint id_experimento)
             {
-                BLL_Map.INYECCION_Map map = new BLL_Map.INYECCION_Map();
+                BLL_MAP.INYECCION_Map map = new BLL_MAP.INYECCION_Map();
                 int resultado = map.ModificarUno(id, tratamiento, admin, id_droga, id_vehiculo, id_experimento, observacion);
                 map = null;
                 return resultado;
             }
 
-            public List<BLL_Entidades.INYECCION_Ent> BuscarTodosxMicela(uint id_micela)
+            public List<BLL_ENTITY.INYECCION_Ent> BuscarTodosxMicela(uint id_micela)
             {
-                BLL_Map.INYECCION_Map map = new BLL_Map.INYECCION_Map();
-                List<BLL_Entidades.INYECCION_Ent> l = map.BuscarTodosxMicela(id_micela);
+                BLL_MAP.INYECCION_Map map = new BLL_MAP.INYECCION_Map();
+                List<BLL_ENTITY.INYECCION_Ent> l = map.BuscarTodosxMicela(id_micela);
                 map = null;
                 return l;
             }
 
             #region iMPLEMENTADOS DE INTERFAZ
 
-            public BLL_Entidades.INYECCION_Ent BuscarUno(uint id)
+            public BLL_ENTITY.INYECCION_Ent Buscar(uint id)
             {
-                BLL_Map.INYECCION_Map map = new BLL_Map.INYECCION_Map();
-                BLL_Entidades.INYECCION_Ent ent = map.Buscar(id);
+                BLL_MAP.INYECCION_Map map = new BLL_MAP.INYECCION_Map();
+                BLL_ENTITY.INYECCION_Ent ent = map.Buscar(id);
                 map = null;
                 return ent;
             }
-            public List<BLL_Entidades.INYECCION_Ent> BuscarTodos()
+            public List<BLL_ENTITY.INYECCION_Ent> BuscarTodos()
             {
-                BLL_Map.INYECCION_Map map = new BLL_Map.INYECCION_Map();
-                List<BLL_Entidades.INYECCION_Ent> l = map.BuscarTodos();
+                BLL_MAP.INYECCION_Map map = new BLL_MAP.INYECCION_Map();
+                List<BLL_ENTITY.INYECCION_Ent> l = map.BuscarTodos();
                 map = null;
                 return l;
             }
-            public List<BLL_Entidades.INYECCION_Ent> BuscarTodos(uint id_experimento)
+            public List<BLL_ENTITY.INYECCION_Ent> BuscarTodos(uint id_experimento)
             {
-                BLL_Map.INYECCION_Map map = new BLL_Map.INYECCION_Map();
-                List<BLL_Entidades.INYECCION_Ent> l = map.BuscarTodos(id_experimento);
+                BLL_MAP.INYECCION_Map map = new BLL_MAP.INYECCION_Map();
+                List<BLL_ENTITY.INYECCION_Ent> l = map.BuscarTodos(id_experimento);
                 map = null;
                 return l;
             }
 
             public string[] DevolverDatos(uint id)
             {
-                BLL_Entidades.INYECCION_Ent a = this.BuscarUno(id);
+                BLL_ENTITY.INYECCION_Ent a = this.Buscar(id);
 
                 string[] datos = { a.Administracion.ToString(), a.Dosis.ToString(), a.Observacion, "Tratamiento x Inyeccion" };
 
@@ -92,14 +90,14 @@ namespace BLL
 
             public int BorrarUno(uint id)
             {
-                BLL_Map.INYECCION_Map map = new BLL_Map.INYECCION_Map();
+                BLL_MAP.INYECCION_Map map = new BLL_MAP.INYECCION_Map();
                 int resultado = map.BorrarUno(id);
                 map = null;
                 return resultado;
             }
             public int DeshacerBorrarUno(uint id)
             {
-                BLL_Map.INYECCION_Map map = new BLL_Map.INYECCION_Map();
+                BLL_MAP.INYECCION_Map map = new BLL_MAP.INYECCION_Map();
                 int resultado = map.DeshacerBorrarUno(id);
                 map = null;
                 return resultado;
@@ -110,15 +108,15 @@ namespace BLL
 
     }
    
-    namespace BLL_Map
+    namespace BLL_MAP
     {
         public class INYECCION_Map
         {
-            public int AgregarUno(uint id, sCANTIDAD tratamiento, string observacion, eADMINISTRACION admin,  uint id_droga, uint id_vehiculo, uint id_experimento)
+            public int Agregar(sCANTIDAD tratamiento, string observacion, eADMINISTRACION admin,  uint id_droga, uint id_vehiculo, uint id_experimento)
             {
                 return 1;
             }
-            public List<BLL_Entidades.INYECCION_Ent> BuscarTodosxMicela(uint id_micela)
+            public List<BLL_ENTITY.INYECCION_Ent> BuscarTodosxMicela(uint id_micela)
             {
                 return null;
             }
@@ -126,15 +124,15 @@ namespace BLL
             { 
                 return 1; 
             }
-            public BLL_Entidades.INYECCION_Ent Buscar(uint id)
+            public BLL_ENTITY.INYECCION_Ent Buscar(uint id)
             { 
                 return null;
             }
-            public List<BLL_Entidades.INYECCION_Ent> BuscarTodos()
+            public List<BLL_ENTITY.INYECCION_Ent> BuscarTodos()
             {
                 return null;
             }
-            public List<BLL_Entidades.INYECCION_Ent> BuscarTodos(uint id_experimento)
+            public List<BLL_ENTITY.INYECCION_Ent> BuscarTodos(uint id_experimento)
             {
                 return null;
             }

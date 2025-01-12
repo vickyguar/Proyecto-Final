@@ -25,17 +25,17 @@ namespace BLL
             }
 
             // READ
-            public BLL_ENTITY.PROYECTO_ENT BuscarUno(uint id)
+            public BLL_ENTITY.PROYECTO_ENT Buscar(uint id)
             {
                 BLL_MAP.PROYECTO_MAP map = new BLL_MAP.PROYECTO_MAP();
-                BLL_ENTITY.PROYECTO_ENT ent = map.BuscarUno(id);
+                BLL_ENTITY.PROYECTO_ENT ent = map.Buscar(id);
                 map = null;
                 return ent;
             }
-            public BLL_ENTITY.PROYECTO_ENT BuscarUno(string Titulo)
+            public BLL_ENTITY.PROYECTO_ENT Buscar(string Titulo)
             {
                 BLL_MAP.PROYECTO_MAP map = new BLL_MAP.PROYECTO_MAP();
-                BLL_ENTITY.PROYECTO_ENT ent = map.BuscarUno(Titulo);
+                BLL_ENTITY.PROYECTO_ENT ent = map.Buscar(Titulo);
                 map = null;
                 return ent;
             }
@@ -122,7 +122,7 @@ namespace BLL
                 sqlServer.CerrarConexion(Conn);
                 return resultado;
             }
-            public BLL_ENTITY.PROYECTO_ENT BuscarUno(uint id)
+            public BLL_ENTITY.PROYECTO_ENT Buscar(uint id)
             {
                 // Instancio la capa DAL y se abre una conexión a la BD (UCA)
                 DAL.sqlServer sql = new DAL.sqlServer();
@@ -149,7 +149,7 @@ namespace BLL
                 if (lista.Count > 0) return lista[0];
                 else return null;
             }
-            public BLL_ENTITY.PROYECTO_ENT BuscarUno(string Titulo)
+            public BLL_ENTITY.PROYECTO_ENT Buscar(string Titulo)
             {
                 // Instancio la capa DAL y se abre una conexión a la BD (UCA)
                 DAL.sqlServer sql = new DAL.sqlServer();

@@ -11,7 +11,6 @@ namespace BLL
 		{
 			public uint id { get; set; }
 			public string NombreGenotipo { get; set; }
-
 			public uint id_raton { get; set; }
 			public bool Eliminado { get; set; }
 		}
@@ -21,10 +20,10 @@ namespace BLL
     {
 		public class GENOTIPO_BLL
         {
-            public int AgregarUno(uint id, string nombre_genotipo, uint id_raton)
+            public int Agregar(string nombre_genotipo, uint id_raton)
             {
                 BLL_Map.GENOTIPO_Map map = new BLL_Map.GENOTIPO_Map();
-                int resultado = map.AgregarUno(id, nombre_genotipo, id_raton);
+                int resultado = map.Agregar(nombre_genotipo, id_raton);
                 map = null;
                 return resultado;
             }
@@ -89,7 +88,7 @@ namespace BLL
     {
 		public class GENOTIPO_Map
         {
-            public int AgregarUno(uint id, string nombre_genotipo, uint id_raton)
+            public int Agregar(string nombre_genotipo, uint id_raton)
             {
                 return 1;
             }

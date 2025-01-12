@@ -5,7 +5,7 @@ using System.IO;
 
 namespace BLL
 {
-	namespace BLL_Entidades
+	namespace BLL_ENTITY
     {
         public class RAYOS_Ent
         {
@@ -15,56 +15,56 @@ namespace BLL
             public sCANTIDAD EnergiaRX;
 
             public string Observacion;
-            public uint id_Experimento;
+            public uint idExperimento;
             public bool Eliminado;
         }
     }
 
-	namespace BLL_Clases
+	namespace BLL_CLASS
     {
-        public class RAYOS_BLL: ITRATAMIENTO<BLL_Entidades.RAYOS_Ent>
+        public class RAYOS_BLL: ITRATAMIENTO<BLL_ENTITY.RAYOS_Ent>
         {
-            public int AgregarUno(uint id, sCANTIDAD tasa_dosis, sCANTIDAD dosis_total, sCANTIDAD energiaRX, string observacion, uint id_experimento)
+            public int Agregar(sCANTIDAD tasa_dosis, sCANTIDAD dosis_total, sCANTIDAD energiaRX, string observacion, uint id_experimento)
             {
-                BLL_Map.RAYOS_Map map = new BLL_Map.RAYOS_Map();
-                int resultado = map.AgregarUno(id, tasa_dosis, dosis_total, energiaRX, observacion, id_experimento);
+                BLL_MAP.RAYOS_Map map = new BLL_MAP.RAYOS_Map();
+                int resultado = map.Agregar(tasa_dosis, dosis_total, energiaRX, observacion, id_experimento);
                 map = null;
                 return resultado;
             }
             public int ModificarUno(uint id, sCANTIDAD tasa_dosis, sCANTIDAD dosis_total, sCANTIDAD energiaRX, string observacion, uint id_experimento, bool eliminado)
             {
-                BLL_Map.RAYOS_Map map = new BLL_Map.RAYOS_Map();
+                BLL_MAP.RAYOS_Map map = new BLL_MAP.RAYOS_Map();
                 int resultado = map.ModificarUno(id, tasa_dosis, dosis_total, energiaRX, observacion, id_experimento, eliminado);
                 map = null;
                 return resultado;
             }
 
             #region iMPLEMENTADOS DE INTERFAZ
-            public BLL_Entidades.RAYOS_Ent BuscarUno(uint id)
+            public BLL_ENTITY.RAYOS_Ent Buscar(uint id)
             {
-                BLL_Map.RAYOS_Map map = new BLL_Map.RAYOS_Map();
-                BLL_Entidades.RAYOS_Ent ent = map.Buscar(id);
+                BLL_MAP.RAYOS_Map map = new BLL_MAP.RAYOS_Map();
+                BLL_ENTITY.RAYOS_Ent ent = map.Buscar(id);
                 map = null;
                 return ent;
             }
-            public List<BLL_Entidades.RAYOS_Ent> BuscarTodos()
+            public List<BLL_ENTITY.RAYOS_Ent> BuscarTodos()
             {
-                BLL_Map.RAYOS_Map map = new BLL_Map.RAYOS_Map();
-                List<BLL_Entidades.RAYOS_Ent> l = map.BuscarTodos();
+                BLL_MAP.RAYOS_Map map = new BLL_MAP.RAYOS_Map();
+                List<BLL_ENTITY.RAYOS_Ent> l = map.BuscarTodos();
                 map = null;
                 return l;
             }
-            public List<BLL_Entidades.RAYOS_Ent> BuscarTodos(uint id_experimento)
+            public List<BLL_ENTITY.RAYOS_Ent> BuscarTodos(uint id_experimento)
             {
-                BLL_Map.RAYOS_Map map = new BLL_Map.RAYOS_Map();
-                List<BLL_Entidades.RAYOS_Ent> l = map.BuscarTodos(id_experimento);
+                BLL_MAP.RAYOS_Map map = new BLL_MAP.RAYOS_Map();
+                List<BLL_ENTITY.RAYOS_Ent> l = map.BuscarTodos(id_experimento);
                 map = null;
                 return l;
             }
 
             public string[] DevolverDatos(uint id)
             {
-                BLL_Entidades.RAYOS_Ent a = this.BuscarUno(id);
+                BLL_ENTITY.RAYOS_Ent a = this.Buscar(id);
 
                 string[] datos = { a.DosisTotal.ToString(), a.EnergiaRX.ToString(), a.TasaDosis.ToString(), a.Observacion, "TRATAMIENTO x RAYOS" };
 
@@ -73,14 +73,14 @@ namespace BLL
 
             public int BorrarUno(uint id)
             {
-                BLL_Map.RAYOS_Map map = new BLL_Map.RAYOS_Map();
+                BLL_MAP.RAYOS_Map map = new BLL_MAP.RAYOS_Map();
                 int resultado = map.BorrarUno(id);
                 map = null;
                 return resultado;
             }
             public int DeshacerBorrarUno(uint id)
             {
-                BLL_Map.RAYOS_Map map = new BLL_Map.RAYOS_Map();
+                BLL_MAP.RAYOS_Map map = new BLL_MAP.RAYOS_Map();
                 int resultado = map.DeshacerBorrarUno(id);
                 map = null;
                 return resultado;
@@ -90,7 +90,7 @@ namespace BLL
         }
     }
 
-	namespace BLL_Map
+	namespace BLL_MAP
     {
         public class RAYOS_Map
         {
@@ -99,19 +99,19 @@ namespace BLL
                 return 1;
             }
 
-            public int AgregarUno(uint id, sCANTIDAD tasa_dosis, sCANTIDAD dosis_total, sCANTIDAD energiaRX, string observacion, uint id_experimento)
+            public int Agregar(sCANTIDAD tasa_dosis, sCANTIDAD dosis_total, sCANTIDAD energiaRX, string observacion, uint id_experimento)
             {
                 return 1;
             }
-            public BLL_Entidades.RAYOS_Ent Buscar(uint id)
+            public BLL_ENTITY.RAYOS_Ent Buscar(uint id)
             {
                 return null;
             }
-            public List<BLL_Entidades.RAYOS_Ent> BuscarTodos()
+            public List<BLL_ENTITY.RAYOS_Ent> BuscarTodos()
             {
                 return null;
             }
-            public List<BLL_Entidades.RAYOS_Ent> BuscarTodos(uint id_experimento)
+            public List<BLL_ENTITY.RAYOS_Ent> BuscarTodos(uint id_experimento)
             {
                 return null;
             }

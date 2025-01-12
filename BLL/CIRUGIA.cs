@@ -2,11 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
-// TODO: Clase CIRUGÍA no lleva id por heredarlo?
 
 namespace BLL {
 
-    namespace BLL_Entidades
+    namespace BLL_ENTITY
     {
         public class CIRUGIA_Ent
         {
@@ -15,57 +14,57 @@ namespace BLL {
             public DateTime FechaCirugia { get; set; }
             public string Observacion { get; set; }
 
-            public uint id_Experimento { get; set; }
+            public uint idExperimento { get; set; }
 
             public bool Eliminado { get; set; }
         }
     }
 
-    namespace BLL_Clases
+    namespace BLL_CLASS
     {
-        public class CIRUGIA_BLL: ITRATAMIENTO<BLL_Entidades.CIRUGIA_Ent>
+        public class CIRUGIA_BLL: ITRATAMIENTO<BLL_ENTITY.CIRUGIA_Ent>
         {
-            int AgregarUno(uint id, sCANTIDAD porcentaje_extirpado, DateTime fecha_cirugia, string observacion, uint id_experimento)
+            int Agregar(sCANTIDAD porcentaje_extirpado, DateTime fecha_cirugia, string observacion, uint id_experimento)
             {
-                BLL_Map.CIRUGIA_Map map = new BLL_Map.CIRUGIA_Map();
-                int resultado = map.AgregarUno(id, porcentaje_extirpado, fecha_cirugia, observacion, id_experimento);
+                BLL_MAP.CIRUGIA_Map map = new BLL_MAP.CIRUGIA_Map();
+                int resultado = map.Agregar(porcentaje_extirpado, fecha_cirugia, observacion, id_experimento);
                 map = null;
                 return resultado;
             }
             int ModificarUno(uint id, sCANTIDAD porcentaje_extirpado, DateTime fecha_cirugia, string observacion, uint id_experimento, bool eliminado)
             {
-                BLL_Map.CIRUGIA_Map map = new BLL_Map.CIRUGIA_Map();
+                BLL_MAP.CIRUGIA_Map map = new BLL_MAP.CIRUGIA_Map();
                 int resultado = map.ModificarUno(id, porcentaje_extirpado, fecha_cirugia, observacion, id_experimento, eliminado);
                 map = null;
                 return resultado;
             }
 
             #region iMPLEMENTADOS DE INTERFAZ
-            public BLL_Entidades.CIRUGIA_Ent BuscarUno(uint id)
+            public BLL_ENTITY.CIRUGIA_Ent Buscar(uint id)
             {
-                BLL_Map.CIRUGIA_Map map = new BLL_Map.CIRUGIA_Map();
-                BLL_Entidades.CIRUGIA_Ent ent = map.Buscar(id);
+                BLL_MAP.CIRUGIA_Map map = new BLL_MAP.CIRUGIA_Map();
+                BLL_ENTITY.CIRUGIA_Ent ent = map.Buscar(id);
                 map = null;
                 return ent;
             }
-            public List<BLL_Entidades.CIRUGIA_Ent> BuscarTodos()
+            public List<BLL_ENTITY.CIRUGIA_Ent> BuscarTodos()
             {
-                BLL_Map.CIRUGIA_Map map = new BLL_Map.CIRUGIA_Map();
-                List<BLL_Entidades.CIRUGIA_Ent> l = map.BuscarTodos();
+                BLL_MAP.CIRUGIA_Map map = new BLL_MAP.CIRUGIA_Map();
+                List<BLL_ENTITY.CIRUGIA_Ent> l = map.BuscarTodos();
                 map = null;
                 return l;
             }
-            public List<BLL_Entidades.CIRUGIA_Ent> BuscarTodos(uint id_experimento)
+            public List<BLL_ENTITY.CIRUGIA_Ent> BuscarTodos(uint id_experimento)
             {
-                BLL_Map.CIRUGIA_Map map = new BLL_Map.CIRUGIA_Map();
-                List<BLL_Entidades.CIRUGIA_Ent> l = map.BuscarTodos(id_experimento);
+                BLL_MAP.CIRUGIA_Map map = new BLL_MAP.CIRUGIA_Map();
+                List<BLL_ENTITY.CIRUGIA_Ent> l = map.BuscarTodos(id_experimento);
                 map = null;
                 return l;
             }
 
             public string[] DevolverDatos(uint id)
             {
-                BLL_Entidades.CIRUGIA_Ent a = this.BuscarUno(id);
+                BLL_ENTITY.CIRUGIA_Ent a = this.Buscar(id);
 
                 string[] datos = { a.FechaCirugia.ToString(), a.PorcentajeExtirpado.ToString(), a.Observacion, "Cirugia" };
 
@@ -74,14 +73,14 @@ namespace BLL {
 
             public int BorrarUno(uint id)
             {
-                BLL_Map.CIRUGIA_Map map = new BLL_Map.CIRUGIA_Map();
+                BLL_MAP.CIRUGIA_Map map = new BLL_MAP.CIRUGIA_Map();
                 int resultado = map.BorrarUno(id);
                 map = null;
                 return resultado;
             }
             public int DeshacerBorrarUno(uint id)
             {
-                BLL_Map.CIRUGIA_Map map = new BLL_Map.CIRUGIA_Map();
+                BLL_MAP.CIRUGIA_Map map = new BLL_MAP.CIRUGIA_Map();
                 int resultado = map.DeshacerBorrarUno(id);
                 map = null;
                 return resultado;
@@ -91,11 +90,11 @@ namespace BLL {
 
     }
 
-	namespace BLL_Map
+	namespace BLL_MAP
     {
         public class CIRUGIA_Map
         {
-            public int AgregarUno(uint id, sCANTIDAD porcentaje_extirpado, DateTime fecha_cirugia, string observacion, uint id_experimento)
+            public int Agregar(sCANTIDAD porcentaje_extirpado, DateTime fecha_cirugia, string observacion, uint id_experimento)
             {
                 return 1;
             }
@@ -104,15 +103,15 @@ namespace BLL {
             {
                 return 1;
             }
-            public BLL_Entidades.CIRUGIA_Ent Buscar(uint id)
+            public BLL_ENTITY.CIRUGIA_Ent Buscar(uint id)
             {
                 return null;
             }
-            public List<BLL_Entidades.CIRUGIA_Ent> BuscarTodos()
+            public List<BLL_ENTITY.CIRUGIA_Ent> BuscarTodos()
             {
                 return null;
             }
-            public List<BLL_Entidades.CIRUGIA_Ent> BuscarTodos(uint id_experimento)
+            public List<BLL_ENTITY.CIRUGIA_Ent> BuscarTodos(uint id_experimento)
             {
                 return null;
             }

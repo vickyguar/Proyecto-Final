@@ -4,11 +4,11 @@ using System.Text;
 
 namespace BLL
 {
-    namespace BLL_Clases
+    namespace BLL_CLASS
     { 
         public interface ITRATAMIENTO<T>
         {
-            T BuscarUno(uint id);
+            T Buscar(uint id);
             List<T> BuscarTodos();
             List<T> BuscarTodos(uint id_experimento);
             string[] DevolverDatos(uint id);
