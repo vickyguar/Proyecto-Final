@@ -38,7 +38,7 @@ namespace BLL
                 return resultado;
             }
 
-            #region 
+            #region READ
             public BLL_ENT.GENOTIPO_Ent Buscar(uint id)
             {
                 BLL_MAP.GENOTIPO_Map map = new BLL_MAP.GENOTIPO_Map();
@@ -62,6 +62,9 @@ namespace BLL
 
                 return datos;
             }
+            #endregion
+
+            #region ELIMINAR
             public int Borrar(uint id)
             {
                 BLL_MAP.GENOTIPO_Map map = new BLL_MAP.GENOTIPO_Map();

@@ -15,7 +15,7 @@ namespace BLL
 
             public eADMINISTRACION Administracion { get; set; }
             public sCANTIDAD PeriodoTratamiento { get; set; }
-            public uint idDroga { get; set; }
+            public uint idDroga { get; set; } // TODO: deberia ser list?
             public uint idVehiculo { get; set; } //TODO: vuela?
             public uint idExperimento { get; set; }
             public uint idMicela { get; set; }
@@ -28,7 +28,7 @@ namespace BLL
     
     namespace BLL_CLASS
     {
-        public class INYECCION_BLL : ITRATAMIENTO<BLL_ENT.INYECCION_Ent>
+        public class INYECCION_Class : ITRATAMIENTO<BLL_ENT.INYECCION_Ent>
         {
             int Agregar(sCANTIDAD tratamiento, string observacion, eADMINISTRACION admin, uint id_droga, uint id_vehiculo, uint id_experimento)
             {
@@ -113,18 +113,28 @@ namespace BLL
     {
         public class INYECCION_Map
         {
+            #region CREATE
+
             public int Agregar(sCANTIDAD tratamiento, string observacion, eADMINISTRACION admin,  uint id_droga, uint id_vehiculo, uint id_experimento)
             {
                 return 1;
             }
+            #endregion
+
+            #region UPDATE
+            public int Actualizar(uint id, sCANTIDAD tratamiento, eADMINISTRACION admin, uint id_droga, uint id_vehiculo, uint id_experimento, string observacion)
+            {
+                return 1;
+            }
+
+            #endregion
+
+            #region READ
             public List<BLL_ENT.INYECCION_Ent> BuscarTodosxMicela(uint id_micela)
             {
                 return null;
             }
-            public int Actualizar(uint id, sCANTIDAD tratamiento, eADMINISTRACION admin, uint id_droga, uint id_vehiculo, uint id_experimento, string observacion) 
-            { 
-                return 1; 
-            }
+          
             public BLL_ENT.INYECCION_Ent Buscar(uint id)
             { 
                 return null;
@@ -137,6 +147,10 @@ namespace BLL
             {
                 return null;
             }
+
+            #endregion
+
+            #region DELETE
             public int Borrar(uint id) {
                 return 1;
             }
@@ -144,7 +158,7 @@ namespace BLL
             public int DeshacerBorrar(uint id) {
                 return 1; 
             }
-
+            #endregion
         }
     }
 }

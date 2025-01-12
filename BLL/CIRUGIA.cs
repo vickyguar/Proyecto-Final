@@ -22,7 +22,7 @@ namespace BLL {
 
     namespace BLL_CLASS
     {
-        public class CIRUGIA_BLL: ITRATAMIENTO<BLL_ENT.CIRUGIA_Ent>
+        public class CIRUGIA_Class: ITRATAMIENTO<BLL_ENT.CIRUGIA_Ent>
         {
             int Agregar(sCANTIDAD porcentaje_extirpado, DateTime fecha_cirugia, string observacion, uint id_experimento)
             {
@@ -94,15 +94,21 @@ namespace BLL {
     {
         public class CIRUGIA_Map
         {
+            #region CREATE
             public int Agregar(sCANTIDAD porcentaje_extirpado, DateTime fecha_cirugia, string observacion, uint id_experimento)
             {
                 return 1;
             }
-            
+            #endregion
+
+            #region UPDATE
             public int Actualizar(uint id, sCANTIDAD porcentaje_extirpado, DateTime fecha_cirugia, string observacion, uint id_experimento, bool eliminado)
             {
                 return 1;
             }
+            #endregion
+
+            #region READ
             public BLL_ENT.CIRUGIA_Ent Buscar(uint id)
             {
                 return null;
@@ -115,6 +121,9 @@ namespace BLL {
             {
                 return null;
             }
+            #endregion
+
+            #region DELETE
             public int Borrar(uint id)
             {
                 return 1;
@@ -123,6 +132,7 @@ namespace BLL {
             {
                 return 1;
             }
+            #endregion
         }
     }
 	

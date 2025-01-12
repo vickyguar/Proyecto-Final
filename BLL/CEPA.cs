@@ -18,6 +18,7 @@ namespace BLL {
     {
         public class CEPA_BLL
         {
+            #region CREATE
             public int Agregar(string nombre_cepa)
             {
                 BLL_MAP.CEPA_Map map = new BLL_MAP.CEPA_Map();
@@ -25,6 +26,9 @@ namespace BLL {
                 map = null;
                 return resultado;
             }
+            #endregion
+
+            #region UPDATE
             public int Actualizar(uint id, string nombre_cepa, bool eliminado)
             {
                 BLL_MAP.CEPA_Map map = new BLL_MAP.CEPA_Map();
@@ -32,8 +36,9 @@ namespace BLL {
                 map = null;
                 return resultado;
             }
+            #endregion
 
-            #region 
+            #region READ
             public BLL_ENT.CEPA_Ent Buscar(uint id)
             {
                 BLL_MAP.CEPA_Map map = new BLL_MAP.CEPA_Map();
@@ -63,6 +68,9 @@ namespace BLL {
 
                 return datos;
             }
+            #endregion
+
+            #region DELETE
             public int Borrar(uint id)
             {
                 BLL_MAP.CEPA_Map map = new BLL_MAP.CEPA_Map();
@@ -85,16 +93,21 @@ namespace BLL {
     {
         public class CEPA_Map
         {
+            #region CREATE
             public int Agregar(string nombre_cepa)
             {
                 return 1;
             }
+            #endregion
+
+            #region UPDATE
             public int Actualizar(uint id, string nombre_cepa, bool eliminado)
             {
                 return 1;
             }
+            #endregion
 
-            #region 
+            #region READ
             public BLL_ENT.CEPA_Ent Buscar(uint id)
             {
                 return null;
@@ -107,6 +120,10 @@ namespace BLL {
             {
                 return null;
             }
+
+            #endregion
+
+            #region DELETE
             public int Borrar(uint id)
             {
                 return 1;

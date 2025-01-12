@@ -30,8 +30,8 @@ namespace BLL
     namespace BLL_CLASS
     {
         public class INVESTIGADOR_Class
-        {
-            // CREATE
+        { 
+            #region CREATE
             public int Agregar(string nombre, string apellido, string email, string usuario, string contrasena, uint id_proyecto, uint administrador)
             {
                 BLL_MAP.INVESTIGADOR_Map map = new BLL_MAP.INVESTIGADOR_Map();
@@ -40,7 +40,9 @@ namespace BLL
                 return resultado;
             }
 
-            // READ
+            #endregion
+
+            #region READ
             public BLL_ENT.INVESTIGADOR_Ent Buscar(uint id)
             {
                 BLL_MAP.INVESTIGADOR_Map map = new BLL_MAP.INVESTIGADOR_Map();
@@ -70,8 +72,9 @@ namespace BLL
                 map = null;
                 return lista;
             }
+#endregion
 
-            //UPDATE
+            #region UPDATE
             public int Actualizar(uint id, string nombre, string apellido, string email, string usuario, string contrasena, uint id_proyecto, uint administrador)
             {
                 BLL_MAP.INVESTIGADOR_Map map = new BLL_MAP.INVESTIGADOR_Map();
@@ -79,8 +82,9 @@ namespace BLL
                 map = null;
                 return resultado;
             }
+            #endregion
 
-            // DELETE
+            #region DELETE
             public int Borrar(uint id)
             {
                 BLL_MAP.INVESTIGADOR_Map map = new BLL_MAP.INVESTIGADOR_Map();
@@ -95,6 +99,7 @@ namespace BLL
                 map = null;
                 return resultado;
             }
+            #endregion
 
         }
     }

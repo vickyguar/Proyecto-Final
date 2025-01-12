@@ -16,7 +16,7 @@ namespace BLL
             //      - el deleted no se lo paso porque porque quizás se pueda tildar default value 0
             public int Agregar(uint idNombreMuestra, uint idNombreTecnica, uint idRaton, DateTime FechaMuestra, string NumHistopato)
             {
-                BLL_MAP.PROYECTO_MAP map = new BLL_MAP.PROYECTO_MAP();
+                BLL_MAP.MUESTRA_MAP map = new BLL_MAP.MUESTRA_MAP();
                 int resultado = map.Agregar(idNombreMuestra, idNombreTecnica, idRaton, FechaMuestra, NumHistopato);
                 map = null;
                 return resultado;
@@ -42,7 +42,10 @@ namespace BLL
     {
         public class MUESTRA_MAP
         {
-
+            internal int Agregar(uint idNombreMuestra, uint idNombreTecnica, uint idRaton, DateTime fechaMuestra, string numHistopato)
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }

@@ -18,7 +18,7 @@ namespace BLL
     }
     namespace BLL_CLASS
     {
-        public class NOMBRE_DROGA_BLL
+        public class NOMBRE_DROGA_Class
         {
             public int Agregar(string nombre_droga, uint catalog_num)
             {

@@ -4,6 +4,7 @@ using System.Text;
 using System.IO;
 using System.Data.SqlClient;
 using System.Data;
+using BLL.BLL_ENT;
 
 namespace BLL {
     namespace BLL_CLASS
@@ -20,18 +21,18 @@ namespace BLL {
             }
             
             // READ
-            public BLL_ENT.CELULA_ENT BuscarUno(uint id)
+            public BLL_ENT.CELULA_ENT Buscar(uint id)
             {
                 BLL_MAP.CELULA_MAP map = new BLL_MAP.CELULA_MAP();
-                BLL_ENT.CELULA_ENT ent = map.BuscarUno(id);
+                BLL_ENT.CELULA_ENT ent = map.Buscar(id);
                 map = null;
                 return ent;
             }
 
-            public BLL_ENT.CELULA_ENT BuscarUno(string LineaCelular)
+            public BLL_ENT.CELULA_ENT Buscar(string LineaCelular)
             {
                 BLL_MAP.CELULA_MAP map = new BLL_MAP.CELULA_MAP();
-                BLL_ENT.CELULA_ENT ent = map.BuscarUno(LineaCelular);
+                BLL_ENT.CELULA_ENT ent = map.Buscar(LineaCelular);
                 map = null;
                 return ent;
             }
@@ -74,7 +75,30 @@ namespace BLL {
     {
         class CELULA_MAP
         {
+            internal int Actualizar(uint id, uint cantidadCelulas, uint lineaCelular)
+            {
+                throw new NotImplementedException();
+            }
 
+            internal int Agregar(uint cantidadCelulas, uint lineaCelular)
+            {
+                throw new NotImplementedException();
+            }
+
+            internal CELULA_ENT Buscar(uint id)
+            {
+                throw new NotImplementedException();
+            }
+
+            internal CELULA_ENT Buscar(string lineaCelular)
+            {
+                throw new NotImplementedException();
+            }
+
+            internal int Eliminar(uint id, uint deleted)
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }

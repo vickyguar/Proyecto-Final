@@ -24,7 +24,7 @@ namespace BLL
 	}
 	namespace BLL_CLASS
 	{
-		public class SEGUIMIENTO_BLL
+		public class SEGUIMIENTO_Class
         {
 
 			public int CalcularVolumen(float a, float b)
