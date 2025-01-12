@@ -25,38 +25,38 @@ namespace BLL
             }
 
             // READ
-            public BLL_ENTITY.PROYECTO_ENT Buscar(uint id)
+            public BLL_ENT.PROYECTO_ENT Buscar(uint id)
             {
                 BLL_MAP.PROYECTO_MAP map = new BLL_MAP.PROYECTO_MAP();
-                BLL_ENTITY.PROYECTO_ENT ent = map.Buscar(id);
+                BLL_ENT.PROYECTO_ENT ent = map.Buscar(id);
                 map = null;
                 return ent;
             }
-            public BLL_ENTITY.PROYECTO_ENT Buscar(string Titulo)
+            public BLL_ENT.PROYECTO_ENT Buscar(string Titulo)
             {
                 BLL_MAP.PROYECTO_MAP map = new BLL_MAP.PROYECTO_MAP();
-                BLL_ENTITY.PROYECTO_ENT ent = map.Buscar(Titulo);
+                BLL_ENT.PROYECTO_ENT ent = map.Buscar(Titulo);
                 map = null;
                 return ent;
             }
-            public List<BLL_ENTITY.PROYECTO_ENT> BuscarTodos()
+            public List<BLL_ENT.PROYECTO_ENT> BuscarTodos()
             {
                 BLL_MAP.PROYECTO_MAP map = new BLL_MAP.PROYECTO_MAP();
-                List<BLL_ENTITY.PROYECTO_ENT> lista = map.BuscarTodos();
+                List<BLL_ENT.PROYECTO_ENT> lista = map.BuscarTodos();
                 map = null;
                 return lista;
             }
-            public List<BLL_ENTITY.PROYECTO_ENT> BuscarTodos(string Tema)
+            public List<BLL_ENT.PROYECTO_ENT> BuscarTodos(string Tema)
             {
                 BLL_MAP.PROYECTO_MAP map = new BLL_MAP.PROYECTO_MAP();
-                List<BLL_ENTITY.PROYECTO_ENT> lista = map.BuscarTodos(Tema);
+                List<BLL_ENT.PROYECTO_ENT> lista = map.BuscarTodos(Tema);
                 map = null;
                 return lista;
             }
-            public List<BLL_ENTITY.PROYECTO_ENT> BuscarTodos(eESTADO Estado)
+            public List<BLL_ENT.PROYECTO_ENT> BuscarTodos(eESTADO Estado)
             {
                 BLL_MAP.PROYECTO_MAP map = new BLL_MAP.PROYECTO_MAP();
-                List<BLL_ENTITY.PROYECTO_ENT> lista = map.BuscarTodos(Estado);
+                List<BLL_ENT.PROYECTO_ENT> lista = map.BuscarTodos(Estado);
                 map = null;
                 return lista;
             }
@@ -84,7 +84,7 @@ namespace BLL
         }
     }
 
-    namespace BLL_ENTITY
+    namespace BLL_ENT
     {
         public class PROYECTO_ENT
         {
@@ -122,7 +122,7 @@ namespace BLL
                 sqlServer.CerrarConexion(Conn);
                 return resultado;
             }
-            public BLL_ENTITY.PROYECTO_ENT Buscar(uint id)
+            public BLL_ENT.PROYECTO_ENT Buscar(uint id)
             {
                 // Instancio la capa DAL y se abre una conexión a la BD (UCA)
                 DAL.sqlServer sql = new DAL.sqlServer();
@@ -142,14 +142,14 @@ namespace BLL
                 sql.CerrarConexion(conn); // Cierro conexión
 
                 // Casteo la DataTable a una lista de PROYECTO_ENT
-                List<BLL_ENTITY.PROYECTO_ENT> lista = new List<BLL_ENTITY.PROYECTO_ENT>();
+                List<BLL_ENT.PROYECTO_ENT> lista = new List<BLL_ENT.PROYECTO_ENT>();
                 lista = CastDataToEntity(dt);
 
                 // Retorna el elemento encontrado (que debería ser único)
                 if (lista.Count > 0) return lista[0];
                 else return null;
             }
-            public BLL_ENTITY.PROYECTO_ENT Buscar(string Titulo)
+            public BLL_ENT.PROYECTO_ENT Buscar(string Titulo)
             {
                 // Instancio la capa DAL y se abre una conexión a la BD (UCA)
                 DAL.sqlServer sql = new DAL.sqlServer();
@@ -169,14 +169,14 @@ namespace BLL
                 sql.CerrarConexion(conn); // Cierro conexión
 
                 // Casteo la DataTable a una lista de PROYECTO_ENT
-                List<BLL_ENTITY.PROYECTO_ENT> lista = new List<BLL_ENTITY.PROYECTO_ENT>();
+                List<BLL_ENT.PROYECTO_ENT> lista = new List<BLL_ENT.PROYECTO_ENT>();
                 lista = CastDataToEntity(dt);
 
                 // Retorna el elemento encontrado (que debería ser único)
                 if (lista.Count > 0) return lista[0];
                 else return null;
             }
-            public List<BLL_ENTITY.PROYECTO_ENT> BuscarTodos()
+            public List<BLL_ENT.PROYECTO_ENT> BuscarTodos()
             {
                 // Instancio la capa DAL y se abro una conexión a la BD (UCA)
                 DAL.sqlServer sql = new DAL.sqlServer();
@@ -194,14 +194,14 @@ namespace BLL
                 sql.CerrarConexion(conn); // Cierro conexión
 
                 // Casteo la DataTable a una lista de PROYECTO_ENT
-                List<BLL_ENTITY.PROYECTO_ENT> lista = new List<BLL_ENTITY.PROYECTO_ENT>();
+                List<BLL_ENT.PROYECTO_ENT> lista = new List<BLL_ENT.PROYECTO_ENT>();
                 lista = CastDataToEntity(dt);
 
                 // Retorno la lista
                 if (lista.Count > 0) return lista;
                 else return null;
             }
-            public List<BLL_ENTITY.PROYECTO_ENT> BuscarTodos(string Tema)
+            public List<BLL_ENT.PROYECTO_ENT> BuscarTodos(string Tema)
             {
                 // Instancio la capa DAL y se abre una conexión a la BD (UCA)
                 DAL.sqlServer sql = new DAL.sqlServer();
@@ -221,14 +221,14 @@ namespace BLL
                 sql.CerrarConexion(conn); // Cierro conexión
 
                 // Casteo la DataTable a una lista de PROYECTO_ENT
-                List<BLL_ENTITY.PROYECTO_ENT> lista = new List<BLL_ENTITY.PROYECTO_ENT>();
+                List<BLL_ENT.PROYECTO_ENT> lista = new List<BLL_ENT.PROYECTO_ENT>();
                 lista = CastDataToEntity(dt);
 
                 // Retorna el elemento encontrado (que debe ser único)
                 if (lista.Count > 0) return lista;
                 else return null;
             }
-            public List<BLL_ENTITY.PROYECTO_ENT> BuscarTodos(eESTADO Estado)
+            public List<BLL_ENT.PROYECTO_ENT> BuscarTodos(eESTADO Estado)
             {
                 // Instancio la capa DAL y se abre una conexión a la BD (UCA)
                 DAL.sqlServer sql = new DAL.sqlServer();
@@ -248,7 +248,7 @@ namespace BLL
                 sql.CerrarConexion(conn); // Cierro conexión
 
                 // Casteo la DataTable a una lista de PROYECTO_ENT
-                List<BLL_ENTITY.PROYECTO_ENT> lista = new List<BLL_ENTITY.PROYECTO_ENT>();
+                List<BLL_ENT.PROYECTO_ENT> lista = new List<BLL_ENT.PROYECTO_ENT>();
                 lista = CastDataToEntity(dt);
 
                 // Retorna el elemento encontrado (que debe ser único)
@@ -304,9 +304,9 @@ namespace BLL
                 sqlServer.CerrarConexion(Conn);
                 return resultado;
             }
-            private List<BLL_ENTITY.PROYECTO_ENT> CastDataToEntity(DataTable dt)
+            private List<BLL_ENT.PROYECTO_ENT> CastDataToEntity(DataTable dt)
             {
-                List<BLL_ENTITY.PROYECTO_ENT> lista = new List<BLL_ENTITY.PROYECTO_ENT>();
+                List<BLL_ENT.PROYECTO_ENT> lista = new List<BLL_ENT.PROYECTO_ENT>();
 
                 // Itero sobre cada fila de la DataTable
                 foreach (DataRow dr in dt.Rows)
@@ -315,7 +315,7 @@ namespace BLL
                     if (dr["id"].ToString() != null)
                     {
                         // Nueva instancia de PROYECTO_ENT
-                        BLL_ENTITY.PROYECTO_ENT ent = new BLL_ENTITY.PROYECTO_ENT();
+                        BLL_ENT.PROYECTO_ENT ent = new BLL_ENT.PROYECTO_ENT();
 
                         // Mapeo de atributos 
                         ent.id = uint.Parse(dr["id"].ToString());

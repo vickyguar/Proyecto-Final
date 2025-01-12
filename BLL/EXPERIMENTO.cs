@@ -24,38 +24,38 @@ namespace BLL
             }
 
             // READ
-            public BLL_ENTITY.EXPERIMENTO_ENT BuscarUno(uint id)
+            public BLL_ENT.EXPERIMENTO_ENT BuscarUno(uint id)
             {
                 BLL_MAP.EXPERIMENTO_MAP map = new BLL_MAP.EXPERIMENTO_MAP();
-                BLL_ENTITY.EXPERIMENTO_ENT ent = map.BuscarUno(id);
+                BLL_ENT.EXPERIMENTO_ENT ent = map.BuscarUno(id);
                 map = null;
                 return ent;
             }
-            public BLL_ENTITY.EXPERIMENTO_ENT BuscarUno(string Titulo)
+            public BLL_ENT.EXPERIMENTO_ENT BuscarUno(string Titulo)
             {
                 BLL_MAP.EXPERIMENTO_MAP map = new BLL_MAP.EXPERIMENTO_MAP();
-                BLL_ENTITY.EXPERIMENTO_ENT ent = map.BuscarUno(Titulo);
+                BLL_ENT.EXPERIMENTO_ENT ent = map.BuscarUno(Titulo);
                 map = null;
                 return ent;
             }
-            public List<BLL_ENTITY.EXPERIMENTO_ENT> BuscarTodos()
+            public List<BLL_ENT.EXPERIMENTO_ENT> BuscarTodos()
             {
                 BLL_MAP.EXPERIMENTO_MAP map = new BLL_MAP.EXPERIMENTO_MAP();
-                List<BLL_ENTITY.EXPERIMENTO_ENT> lista = map.BuscarTodos();
+                List<BLL_ENT.EXPERIMENTO_ENT> lista = map.BuscarTodos();
                 map = null;
                 return lista;
             }
-            public List<BLL_ENTITY.EXPERIMENTO_ENT> BuscarTodos(string Tema)
+            public List<BLL_ENT.EXPERIMENTO_ENT> BuscarTodos(string Tema)
             {
                 BLL_MAP.EXPERIMENTO_MAP map = new BLL_MAP.EXPERIMENTO_MAP();
-                List<BLL_ENTITY.EXPERIMENTO_ENT> lista = map.BuscarTodos(Tema);
+                List<BLL_ENT.EXPERIMENTO_ENT> lista = map.BuscarTodos(Tema);
                 map = null;
                 return lista;
             }
-            public List<BLL_ENTITY.EXPERIMENTO_ENT> BuscarTodos(eESTADO Estado)
+            public List<BLL_ENT.EXPERIMENTO_ENT> BuscarTodos(eESTADO Estado)
             {
                 BLL_MAP.EXPERIMENTO_MAP map = new BLL_MAP.EXPERIMENTO_MAP();
-                List<BLL_ENTITY.EXPERIMENTO_ENT> lista = map.BuscarTodos(Estado);
+                List<BLL_ENT.EXPERIMENTO_ENT> lista = map.BuscarTodos(Estado);
                 map = null;
                 return lista;
             }
@@ -83,7 +83,7 @@ namespace BLL
 
         }
     }
-    namespace BLL_ENTITY
+    namespace BLL_ENT
     {
         // Aca deje un comentario
         public class EXPERIMENTO_ENT

@@ -5,7 +5,7 @@ using System.IO;
 
 namespace BLL
 { 
-    namespace BLL_ENTITY
+    namespace BLL_ENT
     {
         public class PAPER_Ent
         {
@@ -29,73 +29,73 @@ namespace BLL
                 map = null;
                 return resultado;
             }
-            public BLL_ENTITY.PAPER_Ent Buscar(uint id)
+            public BLL_ENT.PAPER_Ent Buscar(uint id)
             {
                 BLL_MAP.PAPER_Map map = new BLL_MAP.PAPER_Map();
-                BLL_ENTITY.PAPER_Ent ent = map.Buscar(id);
+                BLL_ENT.PAPER_Ent ent = map.Buscar(id);
                 map = null;
                 return ent;
             }
 
-            public BLL_ENTITY.PAPER_Ent Buscar(string titulo)
+            public BLL_ENT.PAPER_Ent Buscar(string titulo)
             {
                 BLL_MAP.PAPER_Map map = new BLL_MAP.PAPER_Map();
-                BLL_ENTITY.PAPER_Ent ent = map.Buscar(titulo);
+                BLL_ENT.PAPER_Ent ent = map.Buscar(titulo);
                 // no deberia haber +1 con = titulo
 
                 map = null;
                 return ent;
             }
 
-            public List<BLL_ENTITY.PAPER_Ent> BuscarTodos()
+            public List<BLL_ENT.PAPER_Ent> BuscarTodos()
             {
                 BLL_MAP.PAPER_Map map = new BLL_MAP.PAPER_Map();
-                List<BLL_ENTITY.PAPER_Ent> l = map.BuscarTodos();
+                List<BLL_ENT.PAPER_Ent> l = map.BuscarTodos();
                 map = null;
                 return l;
             }
 
-            public List<BLL_ENTITY.PAPER_Ent> BuscarTodos(uint id_proyecto)
+            public List<BLL_ENT.PAPER_Ent> BuscarTodos(uint id_proyecto)
             {
                 BLL_MAP.PAPER_Map map = new BLL_MAP.PAPER_Map();
-                List<BLL_ENTITY.PAPER_Ent> l = map.BuscarTodos();
+                List<BLL_ENT.PAPER_Ent> l = map.BuscarTodos();
                 map = null;
                 return l;
             }
 
-            public List<BLL_ENTITY.PAPER_Ent> BuscarTodos(ePUBLICADO publicado)
+            public List<BLL_ENT.PAPER_Ent> BuscarTodos(ePUBLICADO publicado)
             {
                 BLL_MAP.PAPER_Map map = new BLL_MAP.PAPER_Map();
-                List<BLL_ENTITY.PAPER_Ent> l = map.BuscarTodos(publicado);
+                List<BLL_ENT.PAPER_Ent> l = map.BuscarTodos(publicado);
                 map = null;
                 return l;
             }
             public string[] DevolverDatos(uint id)
             {
-                BLL.BLL_ENTITY.PAPER_Ent a = this.Buscar(id);
+                BLL.BLL_ENT.PAPER_Ent a = this.Buscar(id);
                 string[] datos = { a.Titulo, a.Link, a.Publicado.ToString(), a.Eliminado.ToString(), "Paper" };
                 return datos;
             }
 
-            public int ModificarUno(int id, string titulo, uint id_proyecto, string link, uint publicado)
+            public int Actualizar(int id, string titulo, uint id_proyecto, string link, uint publicado)
             {
                 BLL_MAP.PAPER_Map map = new BLL_MAP.PAPER_Map();
-                int resultado = map.ModificarUno(id, titulo, id_proyecto, link, publicado);
+                int resultado = map.Actualizar(id, titulo, id_proyecto, link, publicado);
                 map = null;
                 return resultado;
             }
 
-            public int BorrarUno(int id)
+            public int Borrar(int id)
             {
                 BLL_MAP.PAPER_Map map = new BLL_MAP.PAPER_Map();
-                int resultado = map.BorrarUno(id);
+                int resultado = map.Borrar(id);
                 map = null;
                 return resultado;
             }
-            public int DeshacerBorrarUno(int id)
+            public int DeshacerBorrar(int id)
             {
                 BLL_MAP.PAPER_Map map = new BLL_MAP.PAPER_Map();
-                int resultado = map.DeshacerBorrarUno(id);
+                int resultado = map.DeshacerBorrar(id);
                 map = null;
                 return resultado;
             }
@@ -109,37 +109,37 @@ namespace BLL
             {
                 return 1;
             }
-            public BLL_ENTITY.PAPER_Ent Buscar(uint id)
+            public BLL_ENT.PAPER_Ent Buscar(uint id)
             {
                 return null;
             }
-            public BLL_ENTITY.PAPER_Ent Buscar(string titulo)
+            public BLL_ENT.PAPER_Ent Buscar(string titulo)
             {
                 return null;
             }
-            public List<BLL_ENTITY.PAPER_Ent> BuscarTodos()
+            public List<BLL_ENT.PAPER_Ent> BuscarTodos()
             {
                 return null;
             }
 
-            public List<BLL_ENTITY.PAPER_Ent> BuscarTodos(uint id_proyecto)
+            public List<BLL_ENT.PAPER_Ent> BuscarTodos(uint id_proyecto)
             {
                 return null;
             }
-            public List<BLL_ENTITY.PAPER_Ent> BuscarTodos(ePUBLICADO publicado)
+            public List<BLL_ENT.PAPER_Ent> BuscarTodos(ePUBLICADO publicado)
             {
                 return null;
             }
-            public int ModificarUno(int id, string titulo, uint id_proyecto, string link, uint publicado)
+            public int Actualizar(int id, string titulo, uint id_proyecto, string link, uint publicado)
             {
                 return 1;
             }
 
-            public int BorrarUno(int id)
+            public int Borrar(int id)
             {
                 return 1;
             }
-            public int DeshacerBorrarUno(int id)
+            public int DeshacerBorrar(int id)
             {
                 return 1;
             }

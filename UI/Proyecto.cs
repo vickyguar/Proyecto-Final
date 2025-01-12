@@ -12,7 +12,7 @@ namespace UI
 {
     public partial class Proyecto : Form
     {
-        List<BLL.BLL_ENTITY.PROYECTO_ENT> ListaProyectos;
+        List<BLL.BLL_ENT.PROYECTO_ENT> ListaProyectos;
         public Proyecto()
         {
             InitializeComponent();
@@ -40,7 +40,7 @@ namespace UI
             dt.Columns.Add("Fecha Fin");
             dt.Columns.Add("Estado");
             // dt.Columns.Add("Deleted");
-            foreach (BLL.BLL_ENTITY.PROYECTO_ENT p in ListaProyectos)
+            foreach (BLL.BLL_ENT.PROYECTO_ENT p in ListaProyectos)
             {
                 DataRow dr = dt.NewRow();
 

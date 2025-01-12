@@ -5,7 +5,7 @@ using System.IO;
 
 namespace BLL
 {
-	namespace BLL_Entidades
+	namespace BLL_ENT
 	{
 		public class SEGUIMIENTO_Ent
         {
@@ -16,13 +16,13 @@ namespace BLL
 			public float VolumenTumor { get; set; }
 
 			//foreign keys
-			public uint id_Raton { get; set; }
-			public uint id_Experimento { get; set; }
+			public uint idRaton { get; set; }
+			public uint idExperimento { get; set; }
 		
 			public bool Eliminado { get; set; }
 		}
 	}
-	namespace BLL_Clases
+	namespace BLL_CLASS
 	{
 		public class SEGUIMIENTO_BLL
         {
@@ -32,7 +32,7 @@ namespace BLL
 				float volumenTumor;
 				volumenTumor = (float)Math.PI * (float)Math.Pow(a + b, 2) / 12; //TODO: no era asi, pero me lo imaginé
 
-				BLL_Map.SEGUIMIENTO_Map map = new BLL_Map.SEGUIMIENTO_Map();
+				BLL_MAP.SEGUIMIENTO_Map map = new BLL_MAP.SEGUIMIENTO_Map();
 				int resultado = map.SetVolumenTumor(volumenTumor);
 				map = null;
 				return resultado;
@@ -41,7 +41,7 @@ namespace BLL
 
 		}
 	}
-	namespace BLL_Map
+	namespace BLL_MAP
 	{
 		public class SEGUIMIENTO_Map
         {

@@ -20,18 +20,18 @@ namespace BLL {
             }
             
             // READ
-            public BLL_ENTITY.CELULA_ENT BuscarUno(uint id)
+            public BLL_ENT.CELULA_ENT BuscarUno(uint id)
             {
                 BLL_MAP.CELULA_MAP map = new BLL_MAP.CELULA_MAP();
-                BLL_ENTITY.CELULA_ENT ent = map.BuscarUno(id);
+                BLL_ENT.CELULA_ENT ent = map.BuscarUno(id);
                 map = null;
                 return ent;
             }
 
-            public BLL_ENTITY.CELULA_ENT BuscarUno(string LineaCelular)
+            public BLL_ENT.CELULA_ENT BuscarUno(string LineaCelular)
             {
                 BLL_MAP.CELULA_MAP map = new BLL_MAP.CELULA_MAP();
-                BLL_ENTITY.CELULA_ENT ent = map.BuscarUno(LineaCelular);
+                BLL_ENT.CELULA_ENT ent = map.BuscarUno(LineaCelular);
                 map = null;
                 return ent;
             }
@@ -58,7 +58,7 @@ namespace BLL {
         }
     }
 
-    namespace BLL_ENTITY
+    namespace BLL_ENT
     {
         public class CELULA_ENT
         {

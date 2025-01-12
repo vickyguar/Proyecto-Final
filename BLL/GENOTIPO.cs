@@ -2,10 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
+using BLL.BLL_ENT;
 
 namespace BLL
 {
-	namespace BLL_ENTITY
+	namespace BLL_ENT
     {
 		public class GENOTIPO_Ent
 		{
@@ -17,8 +18,9 @@ namespace BLL
 
 	namespace BLL_CLASS
     {
-		public class GENOTIPO_BLL
+		public class GENOTIPO_Class
         {
+            //CREATE
             public int Agregar(string nombre_genotipo)
             {
                 BLL_MAP.GENOTIPO_Map map = new BLL_MAP.GENOTIPO_Map();
@@ -26,49 +28,51 @@ namespace BLL
                 map = null;
                 return resultado;
             }
-            public int ModificarUno(uint id, string nombre_genotipo, bool eliminado)
+
+            //UPDATE
+            public int Actualizar(uint id, string nombre_genotipo, bool eliminado)
             {
                 BLL_MAP.GENOTIPO_Map map = new BLL_MAP.GENOTIPO_Map();
-                int resultado = map.ModificarUno(id, nombre_genotipo, eliminado);
+                int resultado = map.Actualizar(id, nombre_genotipo, eliminado);
                 map = null;
                 return resultado;
             }
 
             #region 
-            public BLL_ENTITY.GENOTIPO_Ent BuscarUno(uint id)
+            public BLL_ENT.GENOTIPO_Ent Buscar(uint id)
             {
                 BLL_MAP.GENOTIPO_Map map = new BLL_MAP.GENOTIPO_Map();
-                BLL_ENTITY.GENOTIPO_Ent ent = map.Buscar(id);
+                BLL_ENT.GENOTIPO_Ent ent = map.Buscar(id);
                 map = null;
                 return ent;
             }
             
-            public List<BLL_ENTITY.GENOTIPO_Ent> BuscarTodos()
+            public List<BLL_ENT.GENOTIPO_Ent> BuscarTodos()
             {
                 BLL_MAP.GENOTIPO_Map map = new BLL_MAP.GENOTIPO_Map();
-                List<BLL_ENTITY.GENOTIPO_Ent> l = map.BuscarTodos();
+                List<BLL_ENT.GENOTIPO_Ent> l = map.BuscarTodos();
                 map = null;
                 return l;
             }
             public string[] DevolverDatos(uint id)
             {
-                BLL_ENTITY.GENOTIPO_Ent a = this.BuscarUno(id);
+                BLL_ENT.GENOTIPO_Ent a = this.Buscar(id);
 
                 string[] datos = { a.NombreGenotipo, "Cepa" };
 
                 return datos;
             }
-            public int BorrarUno(uint id)
+            public int Borrar(uint id)
             {
                 BLL_MAP.GENOTIPO_Map map = new BLL_MAP.GENOTIPO_Map();
-                int resultado = map.BorrarUno(id);
+                int resultado = map.Borrar(id);
                 map = null;
                 return resultado;
             }
-            public int DeshacerBorrarUno(uint id)
+            public int DeshacerBorrar(uint id)
             {
                 BLL_MAP.GENOTIPO_Map map = new BLL_MAP.GENOTIPO_Map();
-                int resultado = map.DeshacerBorrarUno(id);
+                int resultado = map.DeshacerBorrar(id);
                 map = null;
                 return resultado;
             }
@@ -85,25 +89,25 @@ namespace BLL
             {
                 return 1;
             }
-            public int ModificarUno(uint id, string nombre_genotipo, bool eliminado)
+            public int Actualizar(uint id, string nombre_genotipo, bool eliminado)
             {
                 return 1;
             }
 
             #region 
-            public BLL_ENTITY.GENOTIPO_Ent Buscar(uint id)
+            public BLL_ENT.GENOTIPO_Ent Buscar(uint id)
             {
                 return null;
             }
-            public List<BLL_ENTITY.GENOTIPO_Ent> BuscarTodos()
+            public List<BLL_ENT.GENOTIPO_Ent> BuscarTodos()
             {
                 return null;
             }
-            public int BorrarUno(uint id)
+            public int Borrar(uint id)
             {
                 return 1;
             }
-            public int DeshacerBorrarUno(uint id)
+            public int DeshacerBorrar(uint id)
             {
                 return 1;
             }

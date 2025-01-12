@@ -5,7 +5,7 @@ using System.IO;
 
 namespace BLL {
 
-    namespace BLL_ENTITY
+    namespace BLL_ENT
     {
         public class CIRUGIA_Ent
         {
@@ -22,7 +22,7 @@ namespace BLL {
 
     namespace BLL_CLASS
     {
-        public class CIRUGIA_BLL: ITRATAMIENTO<BLL_ENTITY.CIRUGIA_Ent>
+        public class CIRUGIA_BLL: ITRATAMIENTO<BLL_ENT.CIRUGIA_Ent>
         {
             int Agregar(sCANTIDAD porcentaje_extirpado, DateTime fecha_cirugia, string observacion, uint id_experimento)
             {
@@ -31,57 +31,57 @@ namespace BLL {
                 map = null;
                 return resultado;
             }
-            int ModificarUno(uint id, sCANTIDAD porcentaje_extirpado, DateTime fecha_cirugia, string observacion, uint id_experimento, bool eliminado)
+            int Actualizar(uint id, sCANTIDAD porcentaje_extirpado, DateTime fecha_cirugia, string observacion, uint id_experimento, bool eliminado)
             {
                 BLL_MAP.CIRUGIA_Map map = new BLL_MAP.CIRUGIA_Map();
-                int resultado = map.ModificarUno(id, porcentaje_extirpado, fecha_cirugia, observacion, id_experimento, eliminado);
+                int resultado = map.Actualizar(id, porcentaje_extirpado, fecha_cirugia, observacion, id_experimento, eliminado);
                 map = null;
                 return resultado;
             }
 
             #region iMPLEMENTADOS DE INTERFAZ
-            public BLL_ENTITY.CIRUGIA_Ent Buscar(uint id)
+            public BLL_ENT.CIRUGIA_Ent Buscar(uint id)
             {
                 BLL_MAP.CIRUGIA_Map map = new BLL_MAP.CIRUGIA_Map();
-                BLL_ENTITY.CIRUGIA_Ent ent = map.Buscar(id);
+                BLL_ENT.CIRUGIA_Ent ent = map.Buscar(id);
                 map = null;
                 return ent;
             }
-            public List<BLL_ENTITY.CIRUGIA_Ent> BuscarTodos()
+            public List<BLL_ENT.CIRUGIA_Ent> BuscarTodos()
             {
                 BLL_MAP.CIRUGIA_Map map = new BLL_MAP.CIRUGIA_Map();
-                List<BLL_ENTITY.CIRUGIA_Ent> l = map.BuscarTodos();
+                List<BLL_ENT.CIRUGIA_Ent> l = map.BuscarTodos();
                 map = null;
                 return l;
             }
-            public List<BLL_ENTITY.CIRUGIA_Ent> BuscarTodos(uint id_experimento)
+            public List<BLL_ENT.CIRUGIA_Ent> BuscarTodos(uint id_experimento)
             {
                 BLL_MAP.CIRUGIA_Map map = new BLL_MAP.CIRUGIA_Map();
-                List<BLL_ENTITY.CIRUGIA_Ent> l = map.BuscarTodos(id_experimento);
+                List<BLL_ENT.CIRUGIA_Ent> l = map.BuscarTodos(id_experimento);
                 map = null;
                 return l;
             }
 
             public string[] DevolverDatos(uint id)
             {
-                BLL_ENTITY.CIRUGIA_Ent a = this.Buscar(id);
+                BLL_ENT.CIRUGIA_Ent a = this.Buscar(id);
 
                 string[] datos = { a.FechaCirugia.ToString(), a.PorcentajeExtirpado.ToString(), a.Observacion, "Cirugia" };
 
                 return datos;
             }
 
-            public int BorrarUno(uint id)
+            public int Borrar(uint id)
             {
                 BLL_MAP.CIRUGIA_Map map = new BLL_MAP.CIRUGIA_Map();
-                int resultado = map.BorrarUno(id);
+                int resultado = map.Borrar(id);
                 map = null;
                 return resultado;
             }
-            public int DeshacerBorrarUno(uint id)
+            public int DeshacerBorrar(uint id)
             {
                 BLL_MAP.CIRUGIA_Map map = new BLL_MAP.CIRUGIA_Map();
-                int resultado = map.DeshacerBorrarUno(id);
+                int resultado = map.DeshacerBorrar(id);
                 map = null;
                 return resultado;
             }
@@ -99,27 +99,27 @@ namespace BLL {
                 return 1;
             }
             
-            public int ModificarUno(uint id, sCANTIDAD porcentaje_extirpado, DateTime fecha_cirugia, string observacion, uint id_experimento, bool eliminado)
+            public int Actualizar(uint id, sCANTIDAD porcentaje_extirpado, DateTime fecha_cirugia, string observacion, uint id_experimento, bool eliminado)
             {
                 return 1;
             }
-            public BLL_ENTITY.CIRUGIA_Ent Buscar(uint id)
+            public BLL_ENT.CIRUGIA_Ent Buscar(uint id)
             {
                 return null;
             }
-            public List<BLL_ENTITY.CIRUGIA_Ent> BuscarTodos()
+            public List<BLL_ENT.CIRUGIA_Ent> BuscarTodos()
             {
                 return null;
             }
-            public List<BLL_ENTITY.CIRUGIA_Ent> BuscarTodos(uint id_experimento)
+            public List<BLL_ENT.CIRUGIA_Ent> BuscarTodos(uint id_experimento)
             {
                 return null;
             }
-            public int BorrarUno(uint id)
+            public int Borrar(uint id)
             {
                 return 1;
             }
-            public int DeshacerBorrarUno(uint id)
+            public int DeshacerBorrar(uint id)
             {
                 return 1;
             }

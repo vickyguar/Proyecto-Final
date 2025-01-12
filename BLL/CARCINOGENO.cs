@@ -14,35 +14,35 @@ namespace BLL
         //TODO: agregar que carcinogeno hereda de inoculacion
         public class CARCINOGENO_CLASS
         {
-            public BLL_ENTITY.CARCINOGENO_ENT BuscarUno(uint id)
+            public BLL_ENT.CARCINOGENO_ENT BuscarUno(uint id)
             {
                 BLL_MAP.CARCINOGENO_MAP map = new BLL_MAP.CARCINOGENO_MAP();
-                BLL_ENTITY.CARCINOGENO_ENT ent = map.BuscarUno(id);
+                BLL_ENT.CARCINOGENO_ENT ent = map.BuscarUno(id);
                 map = null;
                 return ent;
             }
-            public List<BLL_ENTITY.CARCINOGENO_ENT> BuscarTodos()
+            public List<BLL_ENT.CARCINOGENO_ENT> BuscarTodos()
             {
                 BLL_MAP.CARCINOGENO_MAP map = new BLL_MAP.CARCINOGENO_MAP();
-                List<BLL_ENTITY.CARCINOGENO_ENT> lista = map.BuscarTodos();
+                List<BLL_ENT.CARCINOGENO_ENT> lista = map.BuscarTodos();
                 map = null;
                 return lista;
             }
-            public int BorrarUno(uint id)
+            public int Borrar(uint id)
             {
                 BLL_MAP.CARCINOGENO_MAP map = new BLL_MAP.CARCINOGENO_MAP();
-                int resultado = map.BorrarUno(id);
+                int resultado = map.Borrar(id);
                 map = null;
                 return resultado;
             }
 
-            // public int DeshacerBorrarUno(uint id)
+            // public int DeshacerBorrar(uint id)
             // public int AgregarUno(uint id, string nombre)
-            // public int ModificarUno(uint id, string nombre)
+            // public int Actualizar(uint id, string nombre)
         }
     }
 
-    namespace BLL_ENTITY
+    namespace BLL_ENT
     {
         public class CARCINOGENO_ENT
         {
@@ -56,7 +56,7 @@ namespace BLL
     {
         class CARCINOGENO_MAP
         {
-            public BLL_ENTITY.CARCINOGENO_ENT BuscarUno(uint id)
+            public BLL_ENT.CARCINOGENO_ENT BuscarUno(uint id)
             {
                 // Instancio la capa DAL y se abre una conexión a la BD (UCA)
                 DAL.sqlServer sql = new DAL.sqlServer();
@@ -79,14 +79,14 @@ namespace BLL
                 sql.CerrarConexion(conn); // Cierro conexión
 
                 // Casteo la DataTable a una lista de CARCINOGENO_ENT
-                List<BLL_ENTITY.CARCINOGENO_ENT> lista = new List<BLL_ENTITY.CARCINOGENO_ENT>();
+                List<BLL_ENT.CARCINOGENO_ENT> lista = new List<BLL_ENT.CARCINOGENO_ENT>();
                 lista = CastDataToEntity(dt);
 
                 // Retorna el elemento encontrado (que debe ser único)
                 if (lista.Count > 0) return lista[0];
                 else return null;
             }
-            public List<BLL_ENTITY.CARCINOGENO_ENT> BuscarTodos()
+            public List<BLL_ENT.CARCINOGENO_ENT> BuscarTodos()
             {
                 // Instancio la capa DAL y se abro una conexión a la BD (UCA)
                 DAL.sqlServer sql = new DAL.sqlServer();
@@ -104,14 +104,14 @@ namespace BLL
                 sql.CerrarConexion(conn); // Cierro conexión
 
                 // Casteo la DataTable a una lista de CARCINOGENO_ENT
-                List<BLL_ENTITY.CARCINOGENO_ENT> lista = new List<BLL_ENTITY.CARCINOGENO_ENT>();
+                List<BLL_ENT.CARCINOGENO_ENT> lista = new List<BLL_ENT.CARCINOGENO_ENT>();
                 lista = CastDataToEntity(dt);
 
                 // Retorno la lista
                 if (lista.Count > 0) return lista;
                 else return null;
             }
-            public int BorrarUno(uint id)
+            public int Borrar(uint id)
             {
                 // Instancio la capa DAL y se abro una conexión a la BD (UCA)
                 DAL.sqlServer sql = new DAL.sqlServer();
@@ -121,7 +121,7 @@ namespace BLL
                 // Procedimiento almacenado (SP)
                 SqlCommand cmd = new SqlCommand();
                 SqlParameter param = new SqlParameter();
-                cmd.CommandText = "CARCINOGENO_BorrarUno";// Nombre del SP → UPDATE CARCINOGENO SET deleted = true WHERE id = @id;
+                cmd.CommandText = "CARCINOGENO_Borrar";// Nombre del SP → UPDATE CARCINOGENO SET deleted = true WHERE id = @id;
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = conn;
                 param.Value = id;
@@ -134,9 +134,9 @@ namespace BLL
                 sql.CerrarConexion(conn); // Cierro conexión
                 return resultado;
             }
-            private List<BLL_ENTITY.CARCINOGENO_ENT> CastDataToEntity(DataTable dt)
+            private List<BLL_ENT.CARCINOGENO_ENT> CastDataToEntity(DataTable dt)
             {
-                List<BLL_ENTITY.CARCINOGENO_ENT> lista = new List<BLL_ENTITY.CARCINOGENO_ENT>();
+                List<BLL_ENT.CARCINOGENO_ENT> lista = new List<BLL_ENT.CARCINOGENO_ENT>();
 
                 // Itero sobre cada fila de la DataTable
                 foreach (DataRow dr in dt.Rows)
@@ -145,7 +145,7 @@ namespace BLL
                     if (dr["id"].ToString() != null)
                     {
                         // Nueva instancia de CARCINOGENO_ENT
-                        BLL_ENTITY.CARCINOGENO_ENT ent = new BLL_ENTITY.CARCINOGENO_ENT();
+                        BLL_ENT.CARCINOGENO_ENT ent = new BLL_ENT.CARCINOGENO_ENT();
 
                         // Mapeo de atributos 
                         ent.id = uint.Parse(dr["id"].ToString());

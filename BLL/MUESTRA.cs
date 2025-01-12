@@ -25,7 +25,7 @@ namespace BLL
         }
     }
     
-    namespace BLL_ENTITY
+    namespace BLL_ENT
     {
         public class MUESTRA_ENT
         {

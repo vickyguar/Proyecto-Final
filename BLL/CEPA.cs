@@ -5,7 +5,7 @@ using System.IO;
 
 namespace BLL {
 
-    namespace BLL_ENTITY
+    namespace BLL_ENT
     {
         public class CEPA_Ent
         {
@@ -25,55 +25,55 @@ namespace BLL {
                 map = null;
                 return resultado;
             }
-            public int ModificarUno(uint id, string nombre_cepa, bool eliminado)
+            public int Actualizar(uint id, string nombre_cepa, bool eliminado)
             {
                 BLL_MAP.CEPA_Map map = new BLL_MAP.CEPA_Map();
-                int resultado = map.ModificarUno(id, nombre_cepa, eliminado);
+                int resultado = map.Actualizar(id, nombre_cepa, eliminado);
                 map = null;
                 return resultado;
             }
 
             #region 
-            public BLL_ENTITY.CEPA_Ent Buscar(uint id)
+            public BLL_ENT.CEPA_Ent Buscar(uint id)
             {
                 BLL_MAP.CEPA_Map map = new BLL_MAP.CEPA_Map();
-                BLL_ENTITY.CEPA_Ent ent = map.Buscar(id);
+                BLL_ENT.CEPA_Ent ent = map.Buscar(id);
                 map = null;
                 return ent;
             }
-            public BLL_ENTITY.CEPA_Ent BuscarCepaDeRaton(uint id_raton)
+            public BLL_ENT.CEPA_Ent BuscarCepaDeRaton(uint id_raton)
             {
                 BLL_MAP.CEPA_Map map = new BLL_MAP.CEPA_Map();
-                BLL_ENTITY.CEPA_Ent ent = map.Buscar(id_raton);
+                BLL_ENT.CEPA_Ent ent = map.Buscar(id_raton);
                 map = null;
                 return ent;
             }
-            public List<BLL_ENTITY.CEPA_Ent> BuscarTodos()
+            public List<BLL_ENT.CEPA_Ent> BuscarTodos()
             {
                 BLL_MAP.CEPA_Map map = new BLL_MAP.CEPA_Map();
-                List<BLL_ENTITY.CEPA_Ent> l = map.BuscarTodos();
+                List<BLL_ENT.CEPA_Ent> l = map.BuscarTodos();
                 map = null;
                 return l;
             }
             public string[] DevolverDatos(uint id)
             {
-                BLL_ENTITY.CEPA_Ent a = this.Buscar(id);
+                BLL_ENT.CEPA_Ent a = this.Buscar(id);
 
                 string[] datos = { a.NombreCepa, "Cepa" };
 
                 return datos;
             }
-            public int BorrarUno(uint id)
+            public int Borrar(uint id)
             {
                 BLL_MAP.CEPA_Map map = new BLL_MAP.CEPA_Map();
-                int resultado = map.BorrarUno(id);
+                int resultado = map.Borrar(id);
                 map = null;
                 return resultado;
             }
-            public int DeshacerBorrarUno(uint id)
+            public int DeshacerBorrar(uint id)
             {
                 BLL_MAP.CEPA_Map map = new BLL_MAP.CEPA_Map();
-                int resultado = map.DeshacerBorrarUno(id);
+                int resultado = map.DeshacerBorrar(id);
                 map = null;
                 return resultado;
             }
@@ -89,29 +89,29 @@ namespace BLL {
             {
                 return 1;
             }
-            public int ModificarUno(uint id, string nombre_cepa, bool eliminado)
+            public int Actualizar(uint id, string nombre_cepa, bool eliminado)
             {
                 return 1;
             }
 
             #region 
-            public BLL_ENTITY.CEPA_Ent Buscar(uint id)
+            public BLL_ENT.CEPA_Ent Buscar(uint id)
             {
                 return null;
             }
-            public BLL_ENTITY.CEPA_Ent BuscarCepaDeRaton(uint id_raton)
+            public BLL_ENT.CEPA_Ent BuscarCepaDeRaton(uint id_raton)
             {
                 return null;
             }
-            public List<BLL_ENTITY.CEPA_Ent> BuscarTodos()
+            public List<BLL_ENT.CEPA_Ent> BuscarTodos()
             {
                 return null;
             }
-            public int BorrarUno(uint id)
+            public int Borrar(uint id)
             {
                 return 1;
             }
-            public int DeshacerBorrarUno(uint id)
+            public int DeshacerBorrar(uint id)
             {
                 return 1;
             }

@@ -5,7 +5,7 @@ using System.IO;
 
 namespace BLL
 {
-    namespace BLL_ENTITY
+    namespace BLL_ENT
     {
         public class MICELA_Ent
         { 
@@ -29,6 +29,7 @@ namespace BLL
     {
         public class MICELA_BLL
         {
+            // CREATE
             public int Agregar(string nombre_micela, bool blanco, sCANTIDAD concentracion, uint id_inyeccion)
             {
                 BLL_MAP.MICELA_Map map = new BLL_MAP.MICELA_Map();
@@ -36,59 +37,64 @@ namespace BLL
                 map = null;
                 return resultado;
             }
-            public int ModificarUno(uint id, string nombre_micela, bool blanco, sCANTIDAD concentracion, uint id_inyeccion, bool eliminado)
+
+            // UPDATE
+            public int Actualizar(uint id, string nombre_micela, bool blanco, sCANTIDAD concentracion, uint id_inyeccion, bool eliminado)
             {
                 BLL_MAP.MICELA_Map map = new BLL_MAP.MICELA_Map();
-                int resultado = map.ModificarUno(id, nombre_micela, blanco, concentracion, id_inyeccion, eliminado);
+                int resultado = map.Actualizar(id, nombre_micela, blanco, concentracion, id_inyeccion, eliminado);
                 map = null;
                 return resultado;
             }
 
-            #region 
-            public BLL_ENTITY.MICELA_Ent Buscar(uint id)
+            //READ
+
+            public BLL_ENT.MICELA_Ent Buscar(uint id)
             {
                 BLL_MAP.MICELA_Map map = new BLL_MAP.MICELA_Map();
-                BLL_ENTITY.MICELA_Ent ent = map.Buscar(id);
+                BLL_ENT.MICELA_Ent ent = map.Buscar(id);
                 map = null;
                 return ent;
             }
-            public List<BLL_ENTITY.MICELA_Ent> BuscarTodos()
+            public List<BLL_ENT.MICELA_Ent> BuscarTodos()
             {
                 BLL_MAP.MICELA_Map map = new BLL_MAP.MICELA_Map();
-                List<BLL_ENTITY.MICELA_Ent> l = map.BuscarTodos();
+                List<BLL_ENT.MICELA_Ent> l = map.BuscarTodos();
                 map = null;
                 return l;
             }
-            public List<BLL_ENTITY.MICELA_Ent> BuscarTodos(uint id_inyeccion)
+            public List<BLL_ENT.MICELA_Ent> BuscarTodos(uint id_inyeccion)
             {
                 BLL_MAP.MICELA_Map map = new BLL_MAP.MICELA_Map();
-                List<BLL_ENTITY.MICELA_Ent> l = map.BuscarTodos(id_inyeccion);
+                List<BLL_ENT.MICELA_Ent> l = map.BuscarTodos(id_inyeccion);
                 map = null;
                 return l;
             }
             public string[] DevolverDatos(uint id)
             {
-                BLL_ENTITY.MICELA_Ent a = this.Buscar(id);
+                BLL_ENT.MICELA_Ent a = this.Buscar(id);
 
                 string[] datos = { a.NombreMicela, a.ConcentracionDrogaxMicela.ToString(), a.Blanco.ToString(), "Micela" };
 
                 return datos;
             }
-            public int BorrarUno(uint id)
+
+            //DELETE
+            public int Borrar(uint id)
             {
                 BLL_MAP.MICELA_Map map = new BLL_MAP.MICELA_Map();
-                int resultado = map.BorrarUno(id);
+                int resultado = map.Borrar(id);
                 map = null;
                 return resultado;
             }
-            public int DeshacerBorrarUno(uint id)
+            public int DeshacerBorrar(uint id)
             {
                 BLL_MAP.MICELA_Map map = new BLL_MAP.MICELA_Map();
-                int resultado = map.DeshacerBorrarUno(id);
+                int resultado = map.DeshacerBorrar(id);
                 map = null;
                 return resultado;
             }
-            #endregion
+            
 
         }
     }
@@ -96,7 +102,7 @@ namespace BLL
     {
         public class MICELA_Map
         {
-            public int ModificarUno(uint id, string nombre_micela, bool blanco, sCANTIDAD concentracion, uint id_inyeccion, bool eliminado)
+            public int Actualizar(uint id, string nombre_micela, bool blanco, sCANTIDAD concentracion, uint id_inyeccion, bool eliminado)
             {
                 return 1;
             }
@@ -105,23 +111,23 @@ namespace BLL
             {
                 return 1;
             }
-            public BLL_ENTITY.MICELA_Ent Buscar(uint id)
+            public BLL_ENT.MICELA_Ent Buscar(uint id)
             {
                 return null;
             }
-            public List<BLL_ENTITY.MICELA_Ent> BuscarTodos()
+            public List<BLL_ENT.MICELA_Ent> BuscarTodos()
             {
                 return null;
             }
-            public List<BLL_ENTITY.MICELA_Ent> BuscarTodos(uint id_inyeccion)
+            public List<BLL_ENT.MICELA_Ent> BuscarTodos(uint id_inyeccion)
             {
                 return null;
             }
-            public int BorrarUno(uint id)
+            public int Borrar(uint id)
             {
                 return 1;
             }
-            public int DeshacerBorrarUno(uint id)
+            public int DeshacerBorrar(uint id)
             {
                 return 1;
             }

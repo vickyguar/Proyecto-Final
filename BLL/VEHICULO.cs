@@ -6,7 +6,7 @@ using System.IO;
 namespace BLL
 {
 
-    namespace BLL_ENTITY
+    namespace BLL_ENT
     {
         public class VEHICULO_Ent
         {
@@ -27,55 +27,55 @@ namespace BLL
                 map = null;
                 return resultado;
             }
-            public int ModificarUno(uint id, string nombre_vehiculo, uint id_inyeccion, bool eliminado)
+            public int Actualizar(uint id, string nombre_vehiculo, uint id_inyeccion, bool eliminado)
             {
                 BLL_MAP.VEHICULO_Map map = new BLL_MAP.VEHICULO_Map();
-                int resultado = map.ModificarUno(id, nombre_vehiculo, id_inyeccion, eliminado);
+                int resultado = map.Actualizar(id, nombre_vehiculo, id_inyeccion, eliminado);
                 map = null;
                 return resultado;
             }
 
             #region 
-            public BLL_ENTITY.VEHICULO_Ent Buscar(uint id)
+            public BLL_ENT.VEHICULO_Ent Buscar(uint id)
             {
                 BLL_MAP.VEHICULO_Map map = new BLL_MAP.VEHICULO_Map();
-                BLL_ENTITY.VEHICULO_Ent ent = map.Buscar(id);
+                BLL_ENT.VEHICULO_Ent ent = map.Buscar(id);
                 map = null;
                 return ent;
             }
-            public List<BLL_ENTITY.VEHICULO_Ent> BuscarTodos()
+            public List<BLL_ENT.VEHICULO_Ent> BuscarTodos()
             {
                 BLL_MAP.VEHICULO_Map map = new BLL_MAP.VEHICULO_Map();
-                List<BLL_ENTITY.VEHICULO_Ent> l = map.BuscarTodos();
+                List<BLL_ENT.VEHICULO_Ent> l = map.BuscarTodos();
                 map = null;
                 return l;
             }
-            public List<BLL_ENTITY.VEHICULO_Ent> BuscarTodos(uint id_inyeccion)
+            public List<BLL_ENT.VEHICULO_Ent> BuscarTodos(uint id_inyeccion)
             {
                 BLL_MAP.VEHICULO_Map map = new BLL_MAP.VEHICULO_Map();
-                List<BLL_ENTITY.VEHICULO_Ent> l = map.BuscarTodos(id_inyeccion);
+                List<BLL_ENT.VEHICULO_Ent> l = map.BuscarTodos(id_inyeccion);
                 map = null;
                 return l;
             }
             public string[] DevolverDatos(uint id)
             {
-                BLL_ENTITY.VEHICULO_Ent a = this.Buscar(id);
+                BLL_ENT.VEHICULO_Ent a = this.Buscar(id);
 
                 string[] datos = { a.NombreVehiculo, "Vehiculo" };
 
                 return datos;
             }
-            public int BorrarUno(uint id)
+            public int Borrar(uint id)
             {
                 BLL_MAP.VEHICULO_Map map = new BLL_MAP.VEHICULO_Map();
-                int resultado = map.BorrarUno(id);
+                int resultado = map.Borrar(id);
                 map = null;
                 return resultado;
             }
-            public int DeshacerBorrarUno(uint id)
+            public int DeshacerBorrar(uint id)
             {
                 BLL_MAP.VEHICULO_Map map = new BLL_MAP.VEHICULO_Map();
-                int resultado = map.DeshacerBorrarUno(id);
+                int resultado = map.DeshacerBorrar(id);
                 map = null;
                 return resultado;
             }
@@ -86,7 +86,7 @@ namespace BLL
     {
         public class VEHICULO_Map
         {
-            public int ModificarUno(uint id, string nombre_vehiculo, uint id_inyeccion, bool eliminado)
+            public int Actualizar(uint id, string nombre_vehiculo, uint id_inyeccion, bool eliminado)
             {
                 return 1;
             }
@@ -95,23 +95,23 @@ namespace BLL
             {
                 return 1;
             }
-            public BLL_ENTITY.VEHICULO_Ent Buscar(uint id)
+            public BLL_ENT.VEHICULO_Ent Buscar(uint id)
             {
                 return null;
             }
-            public List<BLL_ENTITY.VEHICULO_Ent> BuscarTodos()
+            public List<BLL_ENT.VEHICULO_Ent> BuscarTodos()
             {
                 return null;
             }
-            public List<BLL_ENTITY.VEHICULO_Ent> BuscarTodos(uint id_inyeccion)
+            public List<BLL_ENT.VEHICULO_Ent> BuscarTodos(uint id_inyeccion)
             {
                 return null;
             }
-            public int BorrarUno(uint id)
+            public int Borrar(uint id)
             {
                 return 1;
             }
-            public int DeshacerBorrarUno(uint id)
+            public int DeshacerBorrar(uint id)
             {
                 return 1;
             }
