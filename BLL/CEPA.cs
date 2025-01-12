@@ -5,60 +5,59 @@ using System.IO;
 
 namespace BLL {
 
-    namespace BLL_Entidades
+    namespace BLL_ENTITY
     {
         public class CEPA_Ent
         {
             public uint id { get; set; }
             public string NombreCepa { get; set; }
-            public List<uint> id_raton { get; set; }
-            public bool eliminado { get; set; }
+            public bool Eliminado { get; set; }
         }
     }
-    namespace BLL_Clases
+    namespace BLL_CLASS
     {
         public class CEPA_BLL
         {
-            public int AgregarUno(uint id, string nombre_cepa, uint id_raton)
+            public int Agregar(string nombre_cepa)
             {
-                BLL_Map.CEPA_Map map = new BLL_Map.CEPA_Map();
-                int resultado = map.AgregarUno(id, nombre_cepa, id_raton);
+                BLL_MAP.CEPA_Map map = new BLL_MAP.CEPA_Map();
+                int resultado = map.Agregar(nombre_cepa);
                 map = null;
                 return resultado;
             }
-            public int ModificarUno(uint id, string nombre_cepa, uint id_raton, bool eliminado)
+            public int ModificarUno(uint id, string nombre_cepa, bool eliminado)
             {
-                BLL_Map.CEPA_Map map = new BLL_Map.CEPA_Map();
-                int resultado = map.ModificarUno(id, nombre_cepa, id_raton, eliminado);
+                BLL_MAP.CEPA_Map map = new BLL_MAP.CEPA_Map();
+                int resultado = map.ModificarUno(id, nombre_cepa, eliminado);
                 map = null;
                 return resultado;
             }
 
             #region 
-            public BLL_Entidades.CEPA_Ent BuscarUno(uint id)
+            public BLL_ENTITY.CEPA_Ent Buscar(uint id)
             {
-                BLL_Map.CEPA_Map map = new BLL_Map.CEPA_Map();
-                BLL_Entidades.CEPA_Ent ent = map.Buscar(id);
+                BLL_MAP.CEPA_Map map = new BLL_MAP.CEPA_Map();
+                BLL_ENTITY.CEPA_Ent ent = map.Buscar(id);
                 map = null;
                 return ent;
             }
-            public BLL_Entidades.CEPA_Ent BuscarCepaDeRaton(uint id_raton)
+            public BLL_ENTITY.CEPA_Ent BuscarCepaDeRaton(uint id_raton)
             {
-                BLL_Map.CEPA_Map map = new BLL_Map.CEPA_Map();
-                BLL_Entidades.CEPA_Ent ent = map.Buscar(id_raton);
+                BLL_MAP.CEPA_Map map = new BLL_MAP.CEPA_Map();
+                BLL_ENTITY.CEPA_Ent ent = map.Buscar(id_raton);
                 map = null;
                 return ent;
             }
-            public List<BLL_Entidades.CEPA_Ent> BuscarTodos()
+            public List<BLL_ENTITY.CEPA_Ent> BuscarTodos()
             {
-                BLL_Map.CEPA_Map map = new BLL_Map.CEPA_Map();
-                List<BLL_Entidades.CEPA_Ent> l = map.BuscarTodos();
+                BLL_MAP.CEPA_Map map = new BLL_MAP.CEPA_Map();
+                List<BLL_ENTITY.CEPA_Ent> l = map.BuscarTodos();
                 map = null;
                 return l;
             }
             public string[] DevolverDatos(uint id)
             {
-                BLL_Entidades.CEPA_Ent a = this.BuscarUno(id);
+                BLL_ENTITY.CEPA_Ent a = this.Buscar(id);
 
                 string[] datos = { a.NombreCepa, "Cepa" };
 
@@ -66,14 +65,14 @@ namespace BLL {
             }
             public int BorrarUno(uint id)
             {
-                BLL_Map.CEPA_Map map = new BLL_Map.CEPA_Map();
+                BLL_MAP.CEPA_Map map = new BLL_MAP.CEPA_Map();
                 int resultado = map.BorrarUno(id);
                 map = null;
                 return resultado;
             }
             public int DeshacerBorrarUno(uint id)
             {
-                BLL_Map.CEPA_Map map = new BLL_Map.CEPA_Map();
+                BLL_MAP.CEPA_Map map = new BLL_MAP.CEPA_Map();
                 int resultado = map.DeshacerBorrarUno(id);
                 map = null;
                 return resultado;
@@ -82,29 +81,29 @@ namespace BLL {
         }
     }
 
-    namespace BLL_Map
+    namespace BLL_MAP
     {
         public class CEPA_Map
         {
-            public int AgregarUno(uint id, string nombre_cepa, uint id_raton)
+            public int Agregar(string nombre_cepa)
             {
                 return 1;
             }
-            public int ModificarUno(uint id, string nombre_cepa, uint id_raton, bool eliminado)
+            public int ModificarUno(uint id, string nombre_cepa, bool eliminado)
             {
                 return 1;
             }
 
             #region 
-            public BLL_Entidades.CEPA_Ent Buscar(uint id)
+            public BLL_ENTITY.CEPA_Ent Buscar(uint id)
             {
                 return null;
             }
-            public BLL_Entidades.CEPA_Ent BuscarCepaDeRaton(uint id_raton)
+            public BLL_ENTITY.CEPA_Ent BuscarCepaDeRaton(uint id_raton)
             {
                 return null;
             }
-            public List<BLL_Entidades.CEPA_Ent> BuscarTodos()
+            public List<BLL_ENTITY.CEPA_Ent> BuscarTodos()
             {
                 return null;
             }

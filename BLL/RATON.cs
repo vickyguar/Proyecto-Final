@@ -39,6 +39,15 @@ namespace BLL
         public class RATON_BLL
         {
 
+
+
+            public BLL_ENTITY.GENOTIPO_Ent BuscarxCepaDeRaton(uint id_raton)
+            {
+                BLL_MAP.GENOTIPO_Map map = new BLL_MAP.GENOTIPO_Map();
+                BLL_ENTITY.GENOTIPO_Ent ent = map.Buscar(id_raton);
+                map = null;
+                return ent;
+            }
         }
     }
     namespace BLL_Map

@@ -19,6 +19,7 @@ namespace BLL
             public uint idVehiculo { get; set; } //TODO: vuela?
             public uint idExperimento { get; set; }
             public uint idMicela { get; set; }
+            //TODO: en el architect pusimos hasta 2 micelas por lo que tendriamos que poner list pero era para permitirles poner la micela tratamiento y la blanco... charlar con las chicas si pasamos a relacion muchos a muchos
 
             public bool Eliminado { get; set; }
         }
