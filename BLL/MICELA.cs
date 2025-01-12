@@ -27,9 +27,9 @@ namespace BLL
     }
     namespace BLL_CLASS
     {
-        public class MICELA_BLL
+        public class MICELA_Class
         {
-            // CREATE
+            #region CREATE
             public int Agregar(string nombre_micela, bool blanco, sCANTIDAD concentracion, uint id_inyeccion)
             {
                 BLL_MAP.MICELA_Map map = new BLL_MAP.MICELA_Map();
@@ -37,8 +37,9 @@ namespace BLL
                 map = null;
                 return resultado;
             }
+            #endregion
 
-            // UPDATE
+            #region UPDATE
             public int Actualizar(uint id, string nombre_micela, bool blanco, sCANTIDAD concentracion, uint id_inyeccion, bool eliminado)
             {
                 BLL_MAP.MICELA_Map map = new BLL_MAP.MICELA_Map();
@@ -46,9 +47,9 @@ namespace BLL
                 map = null;
                 return resultado;
             }
+            #endregion
 
-            //READ
-
+            #region READ
             public BLL_ENT.MICELA_Ent Buscar(uint id)
             {
                 BLL_MAP.MICELA_Map map = new BLL_MAP.MICELA_Map();
@@ -78,8 +79,9 @@ namespace BLL
 
                 return datos;
             }
+            #endregion
 
-            //DELETE
+            #region DELETE
             public int Borrar(uint id)
             {
                 BLL_MAP.MICELA_Map map = new BLL_MAP.MICELA_Map();
@@ -94,23 +96,31 @@ namespace BLL
                 map = null;
                 return resultado;
             }
-            
 
+            #endregion
         }
     }
     namespace BLL_MAP
     {
         public class MICELA_Map
         {
-            public int Actualizar(uint id, string nombre_micela, bool blanco, sCANTIDAD concentracion, uint id_inyeccion, bool eliminado)
-            {
-                return 1;
-            }
+            #region CREATE
 
             public int Agregar(string nombre_micela, bool blanco, sCANTIDAD concentracion, uint id_inyeccion)
             {
                 return 1;
             }
+            #endregion
+
+            #region UPDATE
+            public int Actualizar(uint id, string nombre_micela, bool blanco, sCANTIDAD concentracion, uint id_inyeccion, bool eliminado)
+            {
+                return 1;
+            }
+
+            #endregion
+
+            #region READ
             public BLL_ENT.MICELA_Ent Buscar(uint id)
             {
                 return null;
@@ -123,6 +133,9 @@ namespace BLL
             {
                 return null;
             }
+            #endregion
+
+            #region DELETE 
             public int Borrar(uint id)
             {
                 return 1;
@@ -131,6 +144,8 @@ namespace BLL
             {
                 return 1;
             }
+            #endregion
+
         }
     }
 }

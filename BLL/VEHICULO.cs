@@ -18,8 +18,9 @@ namespace BLL
     }
     namespace BLL_CLASS
     {
-        public class VEHICULO_BLL
+        public class VEHICULO_Class
         {
+            #region CREATE
             public int Agregar(string nombre_vehiculo, uint id_inyeccion)
             {
                 BLL_MAP.VEHICULO_Map map = new BLL_MAP.VEHICULO_Map();
@@ -27,6 +28,9 @@ namespace BLL
                 map = null;
                 return resultado;
             }
+            #endregion
+
+            #region UPDATE
             public int Actualizar(uint id, string nombre_vehiculo, uint id_inyeccion, bool eliminado)
             {
                 BLL_MAP.VEHICULO_Map map = new BLL_MAP.VEHICULO_Map();
@@ -34,8 +38,9 @@ namespace BLL
                 map = null;
                 return resultado;
             }
+            #endregion
 
-            #region 
+            #region READ
             public BLL_ENT.VEHICULO_Ent Buscar(uint id)
             {
                 BLL_MAP.VEHICULO_Map map = new BLL_MAP.VEHICULO_Map();
@@ -65,6 +70,9 @@ namespace BLL
 
                 return datos;
             }
+            #endregion
+
+            #region DELETE
             public int Borrar(uint id)
             {
                 BLL_MAP.VEHICULO_Map map = new BLL_MAP.VEHICULO_Map();
@@ -86,15 +94,23 @@ namespace BLL
     {
         public class VEHICULO_Map
         {
-            public int Actualizar(uint id, string nombre_vehiculo, uint id_inyeccion, bool eliminado)
-            {
-                return 1;
-            }
-
+            #region CREATE
             public int Agregar(string nombre_vehiculo, uint id_inyeccion)
             {
                 return 1;
             }
+
+            #endregion
+
+            #region UPDATE
+            public int Actualizar(uint id, string nombre_vehiculo, uint id_inyeccion, bool eliminado)
+            {
+                return 1;
+            }
+            #endregion
+
+            #region READ
+
             public BLL_ENT.VEHICULO_Ent Buscar(uint id)
             {
                 return null;
@@ -107,6 +123,12 @@ namespace BLL
             {
                 return null;
             }
+
+            #endregion
+
+
+            #region DELETE
+
             public int Borrar(uint id)
             {
                 return 1;
@@ -115,6 +137,8 @@ namespace BLL
             {
                 return 1;
             }
+            #endregion
+
         }
     }
 

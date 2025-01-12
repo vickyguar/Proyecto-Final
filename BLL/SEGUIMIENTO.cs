@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
+using BLL.BLL_ENT;
 
 namespace BLL
 {
@@ -26,18 +27,87 @@ namespace BLL
 	{
 		public class SEGUIMIENTO_Class
         {
+            #region CREATE
+            public int Agregar(uint id_raton, uint id_experimento, DateTime fecha_seguimiento, float peso_raton, float tamano_raton, float a_vol, float b_vol)
+            {
+                BLL_MAP.SEGUIMIENTO_Map map = new BLL_MAP.SEGUIMIENTO_Map();
+                float vol_tumor = CalcularVolumen(a_vol, b_vol);
+                int resultado = map.Agregar(id_raton, id_experimento, fecha_seguimiento, peso_raton, tamano_raton, vol_tumor);
 
-			public int CalcularVolumen(float a, float b)
-			{
-				float volumenTumor;
-				volumenTumor = (float)Math.PI * (float)Math.Pow(a + b, 2) / 12; //TODO: no era asi, pero me lo imaginé
+                map = null;
+                return resultado;
+            }
 
-				BLL_MAP.SEGUIMIENTO_Map map = new BLL_MAP.SEGUIMIENTO_Map();
-				int resultado = map.SetVolumenTumor(volumenTumor);
-				map = null;
-				return resultado;
-			}
+            public float CalcularVolumen(float a, float b)
+            {
+                float volumenTumor;
+                volumenTumor = (float)Math.PI * (float)Math.Pow(a + b, 2) / 12; //TODO: no era asi, pero me lo imaginé
+                return volumenTumor;
+            }
+            #endregion
 
+            #region READ
+            public BLL_ENT.SEGUIMIENTO_Ent Buscar(uint id)
+            {
+                BLL_MAP.SEGUIMIENTO_Map map = new BLL_MAP.SEGUIMIENTO_Map();
+                BLL_ENT.SEGUIMIENTO_Ent ent = map.Buscar(id);
+                map = null;
+                return ent;
+            }
+
+            public List<BLL_ENT.SEGUIMIENTO_Ent> BuscarTodos(DateTime fecha_seguimiento)
+            {
+                BLL_MAP.SEGUIMIENTO_Map map = new BLL_MAP.SEGUIMIENTO_Map();
+                List<BLL_ENT.SEGUIMIENTO_Ent> lista = map.BuscarTodos(fecha_seguimiento);
+                map = null;
+                return lista;
+            }
+
+            public List<BLL_ENT.SEGUIMIENTO_Ent> BuscarTodosxExperimento(uint id_experimento)
+            {
+                BLL_MAP.SEGUIMIENTO_Map map = new BLL_MAP.SEGUIMIENTO_Map();
+                List<BLL_ENT.SEGUIMIENTO_Ent> lista = map.BuscarTodosxExperimento(id_experimento);
+                map = null;
+                return lista;
+            }
+            public List<BLL_ENT.SEGUIMIENTO_Ent> BuscarTodosxRaton(uint id_raton)
+            {
+                BLL_MAP.SEGUIMIENTO_Map map = new BLL_MAP.SEGUIMIENTO_Map();
+                List<BLL_ENT.SEGUIMIENTO_Ent> lista = map.BuscarTodosxRaton(id_raton);
+                map = null;
+                return lista;
+            }
+
+            #endregion
+
+            #region  UPDATE
+            public int Actualizar(uint id, uint id_raton, uint id_experimento, DateTime fecha_seguimiento, float peso_raton, float tamano_raton, float a_vol, float b_vol)
+            {
+                BLL_MAP.SEGUIMIENTO_Map map = new BLL_MAP.SEGUIMIENTO_Map();
+                float vol_tumor = CalcularVolumen(a_vol, b_vol);
+                int resultado = map.Actualizar(id, id_raton, id_experimento, fecha_seguimiento, peso_raton, tamano_raton, vol_tumor);
+                map = null;
+                return resultado;
+            }
+            #endregion
+
+            #region DELETE
+            public int Borrar(uint id)
+            {
+                BLL_MAP.SEGUIMIENTO_Map map = new BLL_MAP.SEGUIMIENTO_Map();
+                int resultado = map.Borrar(id);
+                map = null;
+                return resultado;
+            }
+            public int DeshacerBorrar(uint id)
+            {
+                BLL_MAP.SEGUIMIENTO_Map map = new BLL_MAP.SEGUIMIENTO_Map();
+                int resultado = map.DeshacerBorrar(id);
+                map = null;
+                return resultado;
+            }
+
+            #endregion
 
 		}
 	}
@@ -45,10 +115,52 @@ namespace BLL
 	{
 		public class SEGUIMIENTO_Map
         {
-			public int SetVolumenTumor(float volumen_tumor)
+            #region CREATE
+            internal int Agregar(uint id_raton, uint id_experimento, DateTime fecha_seguimiento, float peso_raton, float tamano_raton, float vol_tumor)
             {
-				return 1;
+                throw new NotImplementedException();
             }
+            #endregion
+
+            #region UPDATE
+            internal int Actualizar(uint id, uint id_raton, uint id_experimento, DateTime fecha_seguimiento, float peso_raton, float tamano_raton, float vol_tumor)
+            {
+                throw new NotImplementedException();
+            }
+            #endregion
+
+            #region READ
+            internal SEGUIMIENTO_Ent Buscar(uint id)
+            {
+                throw new NotImplementedException();
+            }
+
+            internal List<SEGUIMIENTO_Ent> BuscarTodos(DateTime fecha_seguimiento)
+            {
+                throw new NotImplementedException();
+            }
+            internal List<SEGUIMIENTO_Ent> BuscarTodosxExperimento(uint id_experimento)
+            {
+                throw new NotImplementedException();
+            }
+
+            internal List<SEGUIMIENTO_Ent> BuscarTodosxRaton(uint id_raton)
+            {
+                throw new NotImplementedException();
+            }
+            #endregion
+
+            #region DELETE
+            public int Borrar(uint id)
+            {
+                return 1;
+            }
+            public int DeshacerBorrar(uint id)
+            {
+                return 1;
+            }
+
+            #endregion
         }
-	}
+    }
 }

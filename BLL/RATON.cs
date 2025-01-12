@@ -44,7 +44,7 @@ namespace BLL
     {
         public class RATON_Class
         {
-            // CREATE
+            #region CREATE
             public int Agregar(uint id_experimento, DateTime fecha_nacimiento, eGENERO genero, uint control, uint id_cepa, uint id_genotipo, uint id_tratamiento)
             {
                 BLL_MAP.RATON_Map map = new BLL_MAP.RATON_Map();
@@ -53,8 +53,9 @@ namespace BLL
                 map = null;
                 return resultado;
             }
+            #endregion
 
-            // READ
+            #region READ
             public BLL_ENT.RATON_Ent Buscar(uint id)
             {
                 BLL_MAP.RATON_Map map = new BLL_MAP.RATON_Map();
@@ -135,9 +136,9 @@ namespace BLL
                 map = null;
                 return lista;
             }
+            #endregion
 
-            //UPDATE 
-
+            #region  UPDATE
             public int Actualizar(uint id, uint id_experimento, DateTime fecha_nacimiento, eGENERO genero, uint control, uint id_cepa, uint id_genotipo, uint id_tratamiento)
             {
                 BLL_MAP.RATON_Map map = new BLL_MAP.RATON_Map();
@@ -162,8 +163,9 @@ namespace BLL
                 map = null;
                 return resultado;
             }
+            #endregion
 
-            // DELETE
+            #region DELETE
             public int Borrar(uint id)
             {
                 BLL_MAP.RATON_Map map = new BLL_MAP.RATON_Map();
@@ -178,6 +180,8 @@ namespace BLL
                 map = null;
                 return resultado;
             }
+
+            #endregion
 
         }
     }

@@ -20,7 +20,7 @@ namespace BLL
     }
     namespace BLL_CLASS
     {
-        public class PAPER_BLL
+        public class PAPER_Class
         {
             public int Agregar(string titulo, string link, uint id_proyecto, ePUBLICADO publicado = 0, bool eliminado=false)
             {

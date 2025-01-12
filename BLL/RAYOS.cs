@@ -22,7 +22,7 @@ namespace BLL
 
 	namespace BLL_CLASS
     {
-        public class RAYOS_BLL: ITRATAMIENTO<BLL_ENT.RAYOS_Ent>
+        public class RAYOS_Class: ITRATAMIENTO<BLL_ENT.RAYOS_Ent>
         {
             public int Agregar(sCANTIDAD tasa_dosis, sCANTIDAD dosis_total, sCANTIDAD energiaRX, string observacion, uint id_experimento)
             {
@@ -94,15 +94,22 @@ namespace BLL
     {
         public class RAYOS_Map
         {
-            public int Actualizar(uint id, sCANTIDAD tasa_dosis, sCANTIDAD dosis_total, sCANTIDAD energiaRX, string observacion, uint id_experimento, bool eliminado)
-            {
-                return 1;
-            }
 
+            #region CREATE
             public int Agregar(sCANTIDAD tasa_dosis, sCANTIDAD dosis_total, sCANTIDAD energiaRX, string observacion, uint id_experimento)
             {
                 return 1;
             }
+            #endregion
+
+            #region UPDATE
+            public int Actualizar(uint id, sCANTIDAD tasa_dosis, sCANTIDAD dosis_total, sCANTIDAD energiaRX, string observacion, uint id_experimento, bool eliminado)
+            {
+                return 1;
+            }
+            #endregion
+
+            #region READ
             public BLL_ENT.RAYOS_Ent Buscar(uint id)
             {
                 return null;
@@ -115,6 +122,10 @@ namespace BLL
             {
                 return null;
             }
+            #endregion
+
+            #region DELETE
+
             public int Borrar(uint id)
             {
                 return 1;
@@ -123,6 +134,8 @@ namespace BLL
             {
                 return 1;
             }
+            #endregion
+
         }
     }
 	
