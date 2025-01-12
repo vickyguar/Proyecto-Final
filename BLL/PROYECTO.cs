@@ -95,6 +95,8 @@ namespace BLL
             public DateTime FechaFin { get; set; }
             public eESTADO Estado { get; set; }
             public uint deleted { get; set; }
+
+            // public List<BLL_ENT.INVESTIGADOR_ENT> idInvestigadores;
         }
     }
 
@@ -109,7 +111,7 @@ namespace BLL
                 Conn = sqlServer.AbrirConexion(Conn);
 
                 SqlCommand Cmd = new SqlCommand();
-                Cmd.CommandText = "PROYECCTO_Agregar";
+                Cmd.CommandText = "PROYECTO_Agregar";
                 Cmd.CommandType = CommandType.StoredProcedure;
 
                 Cmd.Connection = Conn;

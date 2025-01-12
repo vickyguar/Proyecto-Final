@@ -6,7 +6,7 @@ namespace BLL
 {
     namespace BLL_CLASS
     { 
-        public interface ITRATAMIENTO<T>
+        public interface iTRATAMIENTO<T>
         {
             T Buscar(uint id);
             List<T> BuscarTodos();
@@ -17,5 +17,4 @@ namespace BLL
             
         }
     }
-
 }
