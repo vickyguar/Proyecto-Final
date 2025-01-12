@@ -7,7 +7,7 @@ namespace BLL
 {
     namespace BLL_ENT
     {
-        public class NOMBRE_DROGA_Ent
+        public class DROGA_Ent
         {
             public uint id { get; set; }
             public string NombreDroga { get; set; }
@@ -18,41 +18,41 @@ namespace BLL
     }
     namespace BLL_CLASS
     {
-        public class NOMBRE_DROGA_Class
+        public class DROGA_Class
         {
             public int Agregar(string nombre_droga, uint catalog_num)
             {
-                BLL_MAP.NOMBRE_DROGA_Map map = new BLL_MAP.NOMBRE_DROGA_Map();
+                BLL_MAP.DROGA_Map map = new BLL_MAP.DROGA_Map();
                 int resultado = map.Agregar(nombre_droga, catalog_num);
                 map = null;
                 return resultado;
             }
             public int Actualizar(uint id, string nombre_droga, uint catalog_num, bool eliminado)
             {
-                BLL_MAP.NOMBRE_DROGA_Map map = new BLL_MAP.NOMBRE_DROGA_Map();
+                BLL_MAP.DROGA_Map map = new BLL_MAP.DROGA_Map();
                 int resultado = map.Actualizar(id, nombre_droga, catalog_num, eliminado);
                 map = null;
                 return resultado;
             }
 
             #region 
-            public BLL_ENT.NOMBRE_DROGA_Ent BuscarUno(uint id)
+            public BLL_ENT.DROGA_Ent BuscarUno(uint id)
             {
-                BLL_MAP.NOMBRE_DROGA_Map map = new BLL_MAP.NOMBRE_DROGA_Map();
-                BLL_ENT.NOMBRE_DROGA_Ent ent = map.Buscar(id);
+                BLL_MAP.DROGA_Map map = new BLL_MAP.DROGA_Map();
+                BLL_ENT.DROGA_Ent ent = map.Buscar(id);
                 map = null;
                 return ent;
             }
-            public List<BLL_ENT.NOMBRE_DROGA_Ent> BuscarTodos()
+            public List<BLL_ENT.DROGA_Ent> BuscarTodos()
             {
-                BLL_MAP.NOMBRE_DROGA_Map map = new BLL_MAP.NOMBRE_DROGA_Map();
-                List<BLL_ENT.NOMBRE_DROGA_Ent> l = map.BuscarTodos();
+                BLL_MAP.DROGA_Map map = new BLL_MAP.DROGA_Map();
+                List<BLL_ENT.DROGA_Ent> l = map.BuscarTodos();
                 map = null;
                 return l;
             }
             public string[] DevolverDatos(uint id)
             {
-                BLL_ENT.NOMBRE_DROGA_Ent a = this.BuscarUno(id);
+                BLL_ENT.DROGA_Ent a = this.BuscarUno(id);
 
                 string[] datos = { a.NombreDroga, a.CatalogNum.ToString(), "Droga" };
 
@@ -60,14 +60,14 @@ namespace BLL
             }
             public int Borrar(uint id)
             {
-                BLL_MAP.NOMBRE_DROGA_Map map = new BLL_MAP.NOMBRE_DROGA_Map();
+                BLL_MAP.DROGA_Map map = new BLL_MAP.DROGA_Map();
                 int resultado = map.Borrar(id);
                 map = null;
                 return resultado;
             }
             public int DeshacerBorrar(uint id)
             {
-                BLL_MAP.NOMBRE_DROGA_Map map = new BLL_MAP.NOMBRE_DROGA_Map();
+                BLL_MAP.DROGA_Map map = new BLL_MAP.DROGA_Map();
                 int resultado = map.DeshacerBorrar(id);
                 map = null;
                 return resultado;
@@ -77,7 +77,7 @@ namespace BLL
     }
     namespace BLL_MAP
     {
-        public class NOMBRE_DROGA_Map
+        public class DROGA_Map
         {
             public int Actualizar(uint id, string nombre_droga, uint catalog_num, bool eliminado)
             {
@@ -88,11 +88,11 @@ namespace BLL
             {
                 return 1;
             }
-            public BLL_ENT.NOMBRE_DROGA_Ent Buscar(uint id)
+            public BLL_ENT.DROGA_Ent Buscar(uint id)
             {
                 return null;
             }
-            public List<BLL_ENT.NOMBRE_DROGA_Ent> BuscarTodos()
+            public List<BLL_ENT.DROGA_Ent> BuscarTodos()
             {
                 return null;
             }

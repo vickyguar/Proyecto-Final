@@ -58,7 +58,7 @@
     <Compile Include="LINEA_CELULAR.cs" />
     <Compile Include="MICELA.cs" />
     <Compile Include="MUESTRA.cs" />
-    <Compile Include="NOMBRE_DROGA.cs" />
+    <Compile Include="DROGA.cs" />
     <Compile Include="NOMBRE_ORGANO.cs" />
     <Compile Include="ORGANO.cs" />
     <Compile Include="PAPER.cs" />
