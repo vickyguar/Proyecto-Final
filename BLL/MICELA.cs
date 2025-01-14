@@ -125,7 +125,6 @@ namespace BLL
                 Cmd.Parameters.Add("Blanco", SqlDbType.Int);
                 Cmd.Parameters["Blanco"].Value = blanco;
 
-                //TODO: sCantidad va con 2 ints?
                 Cmd.Parameters.Add("Concentracion.Magnitud", SqlDbType.Float);
                 Cmd.Parameters["Concentracion.Magnitud"].Value = concentracion.Magnitud;
                 Cmd.Parameters.Add("Concentracion.Unidad", SqlDbType.Char,10);

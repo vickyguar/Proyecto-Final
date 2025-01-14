@@ -18,5 +18,6 @@ namespace BLL
 	 * MICELA -> concentracion de droga x micela
 	*/
 
+	//TODO: VER SI HACEMOS ENUM PARA UNIDAD
 	//TODO: DEFINIR EL TO STRING PARA SCANTIDAD
 }

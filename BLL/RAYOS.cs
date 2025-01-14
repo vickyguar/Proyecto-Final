@@ -119,8 +119,6 @@ namespace BLL
                 Cmd.Parameters.Add("Observacion", SqlDbType.NVarChar);
                 Cmd.Parameters["Observacion"].Value = observacion;
 
-
-                //TODO: que se hace en la MAP con sCANTIDAD -> 1 float y un varchar?
                 Cmd.Parameters.Add("TasaDosis.Magnitud", SqlDbType.Float);
                 Cmd.Parameters["TasaDosis.Magnitud"].Value = tasa_dosis.Magnitud;
                 Cmd.Parameters.Add("TasaDosis.Unidad", SqlDbType.VarChar,10);
@@ -135,7 +133,6 @@ namespace BLL
                 Cmd.Parameters["EnergiaRX.Magnitud"].Value = dosis_total.Magnitud;
                 Cmd.Parameters.Add("EnergiaRX.Unidad", SqlDbType.VarChar, 10);
                 Cmd.Parameters["EnergiaRX.Unidad"].Value = dosis_total.Unidad;
-
 
                 int resultado = sqlServer.EjecutarSQL_Int(Cmd);
                 sqlServer.CerrarConexion(Conn);

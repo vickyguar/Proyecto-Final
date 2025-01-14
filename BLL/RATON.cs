@@ -155,12 +155,10 @@ namespace BLL
                 return resultado;
             }
 
-            public int Sacrificar(uint id, uint id_experimento, DateTime fecha_nacimiento, eGENERO genero, uint control, uint id_cepa, uint id_genotipo, uint id_tratamiento, uint jaula, string marca_oreja, uint sacrificio, DateTime fecha_sacrificio, float peso_sin_tumor, string link_foto_sacrificio)
+            public int Sacrificar(uint id, uint sacrificio, DateTime fecha_sacrificio, float peso_sin_tumor, string link_foto_sacrificio)
             {
-                //TODO: me mata, siento que no es necesario todos los parametros del raton
-
                 BLL_MAP.RATON_Map map = new BLL_MAP.RATON_Map();
-                int resultado = map.Sacrificar(id, id_experimento, fecha_nacimiento, genero, control, id_cepa, id_genotipo, id_tratamiento, jaula, marca_oreja, sacrificio, fecha_sacrificio, peso_sin_tumor, link_foto_sacrificio);
+                int resultado = map.Sacrificar(id, sacrificio, fecha_sacrificio, peso_sin_tumor, link_foto_sacrificio);
                 map = null;
                 return resultado;
             }
@@ -200,7 +198,7 @@ namespace BLL
                 SqlCommand Cmd = new SqlCommand();
                 Cmd.CommandText = "RATON_Agregar";
                 Cmd.CommandType = CommandType.StoredProcedure;
-                //aca deberia de autosetearse el idRaton y Eliminado en false
+                //aca deberia de autosetearse el idRaton, Eliminado en false y la flag Sacrificar en false
 
                 Cmd.Connection = Conn;
 
@@ -289,11 +287,12 @@ namespace BLL
             #endregion
 
             #region UPDATE
+
             public int ActualizarOreja(uint id, uint id_experimento, DateTime fecha_nacimiento, eGENERO genero, uint control, uint id_cepa, uint id_genotipo, uint id_tratamiento, uint jaula, string marca_oreja)
             {
                 throw new NotImplementedException();
             }
-            public int Sacrificar(uint id, uint id_experimento, DateTime fecha_nacimiento, eGENERO genero, uint control, uint id_cepa, uint id_genotipo, uint id_tratamiento, uint jaula, string marca_oreja, uint sacrificio, DateTime fecha_sacrificio, float peso_sin_tumor, string link_foto_sacrificio)
+            public int Sacrificar(uint id, uint sacrificio, DateTime fecha_sacrificio, float peso_sin_tumor, string link_foto_sacrificio)
             {
                 throw new NotImplementedException();
             }
