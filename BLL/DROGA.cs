@@ -114,7 +114,7 @@ namespace BLL
             #endregion
 
             #region READ
-            public BLL_ENT.NOMBRE_DROGA_Ent Buscar(uint id)
+            public BLL_ENT.DROGA_Ent Buscar(uint id)
             {
                 return null;
             }
