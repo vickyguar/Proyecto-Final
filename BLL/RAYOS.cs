@@ -41,7 +41,7 @@ namespace BLL
                 return resultado;
             }
 
-            #region iMPLEMENTADOS DE INTERFAZ
+            #region IMPLEMENTADOS DE INTERFAZ
             public BLL_ENT.RAYOS_Ent Buscar(uint id)
             {
                 BLL_MAP.RAYOS_Map map = new BLL_MAP.RAYOS_Map();

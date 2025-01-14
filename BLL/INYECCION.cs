@@ -47,7 +47,7 @@ namespace BLL
                 return resultado;
             }
 
-            public List<BLL_ENT.INYECCION_Ent> BuscarTodosxMicela(uint id_micela)
+            public List<BLL_ENT.INYECCION_Ent> BuscarTodosxMicela(uint id_micela) 
             {
                 BLL_MAP.INYECCION_Map map = new BLL_MAP.INYECCION_Map();
                 List<BLL_ENT.INYECCION_Ent> l = map.BuscarTodosxMicela(id_micela);

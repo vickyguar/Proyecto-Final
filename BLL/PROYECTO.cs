@@ -11,7 +11,7 @@ namespace BLL
     {
         public class PROYECTO_CLASS
         {
-            // CREATE 
+            #region CREATE
             // TODO: ver si es posible (lo mismo aplica en todas las clases para hacer el 'Agregar')
             //      - el id no se lo paso porque quizás se pueda tildar autoincremental
             //      - el deleted no se lo paso porque porque quizás se pueda tildar default value 0
@@ -23,8 +23,9 @@ namespace BLL
                 map = null;
                 return resultado;
             }
+            #endregion
 
-            // READ
+            #region READ
             public BLL_ENT.PROYECTO_ENT Buscar(uint id)
             {
                 BLL_MAP.PROYECTO_MAP map = new BLL_MAP.PROYECTO_MAP();
@@ -60,10 +61,10 @@ namespace BLL
                 map = null;
                 return lista;
             }
-
             //TODO: Buscar por FechaInicio y FechaFin
+            #endregion
 
-            // UPDATE
+            #region UPDATE
             public int Actualizar(uint id, string Titulo, string Tema, DateTime FechaInicio, DateTime FechaFin, eESTADO Estado)
             {
                 BLL_MAP.PROYECTO_MAP map = new BLL_MAP.PROYECTO_MAP();
@@ -71,8 +72,9 @@ namespace BLL
                 map = null;
                 return resultado;
             }
+            #endregion
 
-            // DELETE
+            #region DELETE
             public int Eliminar(uint id, uint deleted)
             {
                 BLL_MAP.PROYECTO_MAP map = new BLL_MAP.PROYECTO_MAP();
@@ -80,7 +82,7 @@ namespace BLL
                 map = null;
                 return resultado;
             }
-
+            #endregion
         }
     }
 
@@ -95,6 +97,8 @@ namespace BLL
             public DateTime FechaFin { get; set; }
             public eESTADO Estado { get; set; }
             public uint deleted { get; set; }
+
+            // public List<BLL_ENT.INVESTIGADOR_ENT> idInvestigadores;
         }
     }
 
@@ -109,7 +113,7 @@ namespace BLL
                 Conn = sqlServer.AbrirConexion(Conn);
 
                 SqlCommand Cmd = new SqlCommand();
-                Cmd.CommandText = "PROYECCTO_Agregar";
+                Cmd.CommandText = "PROYECTO_Agregar";
                 Cmd.CommandType = CommandType.StoredProcedure;
 
                 Cmd.Connection = Conn;

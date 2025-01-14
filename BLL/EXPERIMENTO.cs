@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+
+
 namespace BLL
 {
 
@@ -94,7 +96,7 @@ namespace BLL
             public DateTime FechaFin { get; set; }
             public eESTADO Estado { get; set; }
             public uint id { get; set; }
-            public uint idProyecto { get; set; } // FKO
+            public uint idProyecto { get; set; } // FK
             public uint deleted { get; set; }
         }
     }
@@ -149,4 +151,8 @@ namespace BLL
             }
         }
     }
+
+
+   
+
 }

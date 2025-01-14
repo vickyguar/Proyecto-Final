@@ -13,9 +13,7 @@ namespace BLL
             List<T> BuscarTodos(uint id_experimento);
             string[] DevolverDatos(uint id);
             int Borrar(uint id);
-            int DeshacerBorrar(uint id);
-            
+            int DeshacerBorrar(uint id);   
         }
     }
-
 }
