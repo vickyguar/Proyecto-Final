@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Data;
 using System.Text;
-using System.IO;
 
 namespace BLL
 {
@@ -30,10 +31,10 @@ namespace BLL
     {
         public class INYECCION_Class : ITRATAMIENTO<BLL_ENT.INYECCION_Ent>
         {
-            int Agregar(sCANTIDAD tratamiento, string observacion, eADMINISTRACION admin, uint id_droga, uint id_vehiculo, uint id_experimento)
+            int Agregar(sCANTIDAD dosis, string observacion, eADMINISTRACION admin, uint id_droga, uint id_vehiculo, uint id_experimento)
             {
                 BLL_MAP.INYECCION_Map map = new BLL_MAP.INYECCION_Map();
-                int resultado = map.Agregar(tratamiento, observacion, admin, id_droga, id_vehiculo, id_experimento);
+                int resultado = map.Agregar(dosis, observacion, admin, id_droga, id_vehiculo, id_experimento);
                 map = null;
                 return resultado;
             }
@@ -115,9 +116,43 @@ namespace BLL
         {
             #region CREATE
 
-            public int Agregar(sCANTIDAD tratamiento, string observacion, eADMINISTRACION admin,  uint id_droga, uint id_vehiculo, uint id_experimento)
+            public int Agregar(sCANTIDAD dosis, string observacion, eADMINISTRACION admin,  uint id_droga, uint id_vehiculo, uint id_experimento)
             {
-                return 1;
+                DAL.sqlServer sqlServer = new DAL.sqlServer();
+                SqlConnection Conn = new SqlConnection();
+                Conn = sqlServer.AbrirConexion(Conn);
+
+                SqlCommand Cmd = new SqlCommand();
+                Cmd.CommandText = "INYECCION_Agregar";
+                Cmd.CommandType = CommandType.StoredProcedure;
+                //aca deberia de autosetearse el idExperimento y Eliminado en false
+
+                Cmd.Connection = Conn;
+
+                Cmd.Parameters.Add("idExperimento", SqlDbType.Int);
+                Cmd.Parameters["idExperimento"].Value = id_experimento;
+
+                Cmd.Parameters.Add("idVehiculo", SqlDbType.Int);
+                Cmd.Parameters["idVehiculo"].Value = id_vehiculo;
+
+                Cmd.Parameters.Add("idDroga", SqlDbType.Int);
+                Cmd.Parameters["idDroga"].Value = id_droga;
+
+                Cmd.Parameters.Add("Administracion", SqlDbType.Int);
+                Cmd.Parameters["Administracion"].Value = admin;
+
+                Cmd.Parameters.Add("Observacion", SqlDbType.NVarChar);
+                Cmd.Parameters["Observacion"].Value = observacion;
+
+                //TODO: que se hace en la MAP con sCANTIDAD 
+                Cmd.Parameters.Add("Dosis.Magnitud", SqlDbType.Float);
+                Cmd.Parameters["Dosis.Magnitud"].Value = dosis.Magnitud;
+                Cmd.Parameters.Add("Dosis.Unidad", SqlDbType.VarChar, 10);
+                Cmd.Parameters["Dosis.Unidad"].Value = dosis.Unidad;
+
+                int resultado = sqlServer.EjecutarSQL_Int(Cmd);
+                sqlServer.CerrarConexion(Conn);
+                return resultado;
             }
             #endregion
 

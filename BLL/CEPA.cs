@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Data;
 using System.Text;
-using System.IO;
 
 namespace BLL {
 
@@ -96,7 +97,23 @@ namespace BLL {
             #region CREATE
             public int Agregar(string nombre_cepa)
             {
-                return 1;
+                DAL.sqlServer sqlServer = new DAL.sqlServer();
+                SqlConnection Conn = new SqlConnection();
+                Conn = sqlServer.AbrirConexion(Conn);
+
+                SqlCommand Cmd = new SqlCommand();
+                Cmd.CommandText = "CEPA_Agregar";
+                Cmd.CommandType = CommandType.StoredProcedure;
+                //aca deberia de autosetearse el idCepa y Eliminado en false
+
+                Cmd.Connection = Conn;
+
+                Cmd.Parameters.Add("NombreCepa", SqlDbType.VarChar);
+                Cmd.Parameters["NombreCepa"].Value = nombre_cepa;
+
+                int resultado = sqlServer.EjecutarSQL_Int(Cmd);
+                sqlServer.CerrarConexion(Conn);
+                return resultado;
             }
             #endregion
 

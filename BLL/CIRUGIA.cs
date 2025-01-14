@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Data;
 using System.Text;
-using System.IO;
 
 namespace BLL {
 
@@ -97,7 +98,36 @@ namespace BLL {
             #region CREATE
             public int Agregar(sCANTIDAD porcentaje_extirpado, DateTime fecha_cirugia, string observacion, uint id_experimento)
             {
-                return 1;
+                DAL.sqlServer sqlServer = new DAL.sqlServer();
+                SqlConnection Conn = new SqlConnection();
+                Conn = sqlServer.AbrirConexion(Conn);
+
+                SqlCommand Cmd = new SqlCommand();
+                Cmd.CommandText = "CIRUGIA_Agregar";
+                Cmd.CommandType = CommandType.StoredProcedure;
+                //aca deberia de autosetearse el idExperimento y Eliminado en false
+
+                Cmd.Connection = Conn;
+
+                Cmd.Parameters.Add("idExperimento", SqlDbType.Int);
+                Cmd.Parameters["idExperimento"].Value = id_experimento;
+
+                Cmd.Parameters.Add("FechaCirugia", SqlDbType.DateTime);
+                Cmd.Parameters["FechaCirugia"].Value = fecha_cirugia;
+
+                Cmd.Parameters.Add("Observacion", SqlDbType.NVarChar);
+                Cmd.Parameters["Observacion"].Value = observacion;
+
+                //TODO: que se hace en la MAP con sCANTIDAD
+                Cmd.Parameters.Add("PorcentajeExtirpado.Magnitud", SqlDbType.Float);
+                Cmd.Parameters["PorcentajeExtirpado.Magnitud"].Value = porcentaje_extirpado.Magnitud;
+                Cmd.Parameters.Add("PorcentajeExtirpado.Unidad", SqlDbType.VarChar, 10);
+                Cmd.Parameters["PorcentajeExtirpado.Unidad"].Value = porcentaje_extirpado.Unidad;
+
+
+                int resultado = sqlServer.EjecutarSQL_Int(Cmd);
+                sqlServer.CerrarConexion(Conn);
+                return resultado;
             }
             #endregion
 

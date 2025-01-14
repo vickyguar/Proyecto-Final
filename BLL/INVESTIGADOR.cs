@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
 using System.Text;
-using BLL.BLL_ENT;
 
 namespace BLL
 {
@@ -107,41 +106,85 @@ namespace BLL
     {
         public class INVESTIGADOR_Map
         {
+            #region CREATE
             public int Agregar(string nombre, string apellido, string email, string usuario, string contrasena, uint id_proyecto, uint administrador)
             {
-                return 1;
-            }
+                DAL.sqlServer sqlServer = new DAL.sqlServer();
+                SqlConnection Conn = new SqlConnection();
+                Conn = sqlServer.AbrirConexion(Conn);
 
-            public INVESTIGADOR_Ent Buscar(uint id)
+                SqlCommand Cmd = new SqlCommand();
+                Cmd.CommandText = "INVESTIGADOR_Agregar";
+                Cmd.CommandType = CommandType.StoredProcedure;
+                //aca deberia de autosetearse el idDroga y Eliminado en false
+
+                Cmd.Connection = Conn;
+
+                Cmd.Parameters.Add("Nombre", SqlDbType.VarChar);
+                Cmd.Parameters["Nombre"].Value = nombre;
+
+                Cmd.Parameters.Add("Apellido", SqlDbType.VarChar);
+                Cmd.Parameters["Apellido"].Value = apellido;
+
+                Cmd.Parameters.Add("Email", SqlDbType.NVarChar,40);
+                Cmd.Parameters["Email"].Value = email;
+
+                Cmd.Parameters.Add("Usuario", SqlDbType.VarChar);
+                Cmd.Parameters["Usuario"].Value = usuario;
+
+                Cmd.Parameters.Add("Contrasena", SqlDbType.VarChar);
+                Cmd.Parameters["Contrasena"].Value = contrasena;
+
+                Cmd.Parameters.Add("Usuario", SqlDbType.VarChar);
+                Cmd.Parameters["Usuario"].Value = usuario;
+
+                Cmd.Parameters.Add("idProyecto", SqlDbType.Int);
+                Cmd.Parameters["idProyecto"].Value = id_proyecto;
+
+                Cmd.Parameters.Add("Administrador", SqlDbType.Int);
+                Cmd.Parameters["Administrador"].Value = administrador;
+
+                int resultado = sqlServer.EjecutarSQL_Int(Cmd);
+                sqlServer.CerrarConexion(Conn);
+                return resultado;
+            }
+            #endregion
+            #region READ
+            public BLL_ENT.INVESTIGADOR_Ent Buscar(uint id)
             {
                 return null;
             }
 
-            public INVESTIGADOR_Ent BuscarxNombre(string nombre)
+            public BLL_ENT.INVESTIGADOR_Ent BuscarxNombre(string nombre)
             {
                 return null;
             }
 
-            public INVESTIGADOR_Ent BuscarxApellido(string apeliido)
+            public BLL_ENT.INVESTIGADOR_Ent BuscarxApellido(string apeliido)
             {
                 return null;
             }
 
-            public List<INVESTIGADOR_Ent> BuscarTodos()
+            public List<BLL_ENT.INVESTIGADOR_Ent> BuscarTodos()
             {
                 return null;
             }
 
-            public List<INVESTIGADOR_Ent> BuscarTodos(uint administrador)
+            public List<BLL_ENT.INVESTIGADOR_Ent> BuscarTodos(uint administrador)
             {
                 return null;
             }
 
+            #endregion
+
+            #region UPDATE
             public int Actualizar(uint id, string nombre, string apellido, string email, string usuario, string contrasena, uint id_proyecto, uint administrador)
             {
                 throw new NotImplementedException();
             }
+            #endregion
 
+            #region DELETE
             public int Borrar(uint id)
             {
                 throw new NotImplementedException();
@@ -151,6 +194,7 @@ namespace BLL
             {
                 throw new NotImplementedException();
             }
+            #endregion
         }
     }
 }

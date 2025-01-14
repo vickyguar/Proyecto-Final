@@ -1,6 +1,7 @@
-﻿using BLL.BLL_ENT;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Data;
 using System.Text;
 
 namespace BLL
@@ -189,74 +190,117 @@ namespace BLL
     {
         public class RATON_Map
         {
-            //CREATE
+            #region CREATE
+            public int Agregar(uint id_experimento, DateTime fecha_nacimiento, eGENERO genero, uint control, uint id_cepa, uint id_genotipo, uint id_tratamiento)
+            {
+                DAL.sqlServer sqlServer = new DAL.sqlServer();
+                SqlConnection Conn = new SqlConnection();
+                Conn = sqlServer.AbrirConexion(Conn);
+
+                SqlCommand Cmd = new SqlCommand();
+                Cmd.CommandText = "RATON_Agregar";
+                Cmd.CommandType = CommandType.StoredProcedure;
+                //aca deberia de autosetearse el idRaton y Eliminado en false
+
+                Cmd.Connection = Conn;
+
+                Cmd.Parameters.Add("idExperimento", SqlDbType.Int);
+                Cmd.Parameters["idExperimento"].Value = id_experimento;
+
+                Cmd.Parameters.Add("FechaNacimiento", SqlDbType.DateTime);
+                Cmd.Parameters["FechaNacimiento"].Value = fecha_nacimiento;
+
+                Cmd.Parameters.Add("Genero", SqlDbType.Int);
+                Cmd.Parameters["Genero"].Value = genero;
+
+                Cmd.Parameters.Add("Control", SqlDbType.Int);
+                Cmd.Parameters["Control"].Value = control;
+
+                Cmd.Parameters.Add("idCepa", SqlDbType.Int);
+                Cmd.Parameters["idCepa"].Value = id_cepa;
+
+                Cmd.Parameters.Add("idGenotipo", SqlDbType.Int);
+                Cmd.Parameters["idGenotipo"].Value = id_genotipo;
+
+                Cmd.Parameters.Add("idTratamiento", SqlDbType.Int);
+                Cmd.Parameters["idTratamiento"].Value = id_tratamiento;
+
+                int resultado = sqlServer.EjecutarSQL_Int(Cmd);
+                sqlServer.CerrarConexion(Conn);
+                return resultado;
+            }
+            #endregion
+
+            #region READ
+
+            public BLL_ENT.RATON_Ent Buscar(uint id)
+            {
+                throw new NotImplementedException();
+            }
+            public BLL_ENT.RATON_Ent Buscar(string marca_oreja)
+            {
+                throw new NotImplementedException();
+            }
+
+            public List<BLL_ENT.RATON_Ent> BuscarTodos(uint id_experimento)
+            {
+                throw new NotImplementedException();
+            }
+
+            public List<BLL_ENT.RATON_Ent> BuscarTodosxControl(bool control)
+            {
+                throw new NotImplementedException();
+            }
+
+            public List<BLL_ENT.RATON_Ent> BuscarTodosxFechaNacimiento(object fecha_nacimiento)
+            {
+                throw new NotImplementedException();
+            }
+
+            public List<BLL_ENT.RATON_Ent> BuscarTodosxFechaSacrificio(DateTime fecha_sacrificio)
+            {
+                throw new NotImplementedException();
+            }
+
+            public List<BLL_ENT.RATON_Ent> BuscarTodosxGenero(eGENERO genero)
+            {
+                throw new NotImplementedException();
+            }
+
+            public List<BLL_ENT.RATON_Ent> BuscarTodosxJaula(uint id_jaula)
+            {
+                throw new NotImplementedException();
+            }
+
+            public List<BLL_ENT.RATON_Ent> BuscarTodosxPesoSinTumor(float peso_sin_tumor)
+            {
+                throw new NotImplementedException();
+            }
+
+            public List<BLL_ENT.RATON_Ent> BuscarTodosxTratamiento(uint id_tratamiento)
+            {
+                throw new NotImplementedException();
+            }
+
+            public List<BLL_ENT.RATON_Ent> BuscarTodosxCepa(uint id_cepa)
+            {
+                throw new NotImplementedException();
+            }
+            #endregion
+
+            #region UPDATE
             public int ActualizarOreja(uint id, uint id_experimento, DateTime fecha_nacimiento, eGENERO genero, uint control, uint id_cepa, uint id_genotipo, uint id_tratamiento, uint jaula, string marca_oreja)
             {
                 throw new NotImplementedException();
             }
-
-            //READ
-
-            public RATON_Ent Buscar(uint id)
-            {
-                throw new NotImplementedException();
-            }
-            public RATON_Ent Buscar(string marca_oreja)
-            {
-                throw new NotImplementedException();
-            }
-
-            public List<RATON_Ent> BuscarTodos(uint id_experimento)
-            {
-                throw new NotImplementedException();
-            }
-
-            public List<RATON_Ent> BuscarTodosxControl(bool control)
-            {
-                throw new NotImplementedException();
-            }
-
-            public List<RATON_Ent> BuscarTodosxFechaNacimiento(object fecha_nacimiento)
-            {
-                throw new NotImplementedException();
-            }
-
-            public List<RATON_Ent> BuscarTodosxFechaSacrificio(DateTime fecha_sacrificio)
-            {
-                throw new NotImplementedException();
-            }
-
-            public List<RATON_Ent> BuscarTodosxGenero(eGENERO genero)
-            {
-                throw new NotImplementedException();
-            }
-
-            public List<RATON_Ent> BuscarTodosxJaula(uint id_jaula)
-            {
-                throw new NotImplementedException();
-            }
-
-            public List<RATON_Ent> BuscarTodosxPesoSinTumor(float peso_sin_tumor)
-            {
-                throw new NotImplementedException();
-            }
-
-            public List<RATON_Ent> BuscarTodosxTratamiento(uint id_tratamiento)
-            {
-                throw new NotImplementedException();
-            }
-
-            //UPDATE
-            public int Agregar(uint id_experimento, DateTime fecha_nacimiento, eGENERO genero, uint control, uint id_cepa, uint id_genotipo, uint id_tratamiento)
-            {
-                throw new NotImplementedException();
-            }
-
             public int Sacrificar(uint id, uint id_experimento, DateTime fecha_nacimiento, eGENERO genero, uint control, uint id_cepa, uint id_genotipo, uint id_tratamiento, uint jaula, string marca_oreja, uint sacrificio, DateTime fecha_sacrificio, float peso_sin_tumor, string link_foto_sacrificio)
             {
                 throw new NotImplementedException();
             }
+            #endregion
 
+           
+            #region ELIMINAR
             public int Borrar(uint id)
             {
                 throw new NotImplementedException();
@@ -267,15 +311,11 @@ namespace BLL
                 throw new NotImplementedException();
             }
 
-            public List<BLL_ENT.RATON_Ent> BuscarTodosxCepa(uint id_cepa)
-            {
-                throw new NotImplementedException();
-            }
-
             public int Actualizar(uint id, uint id_experimento, DateTime fecha_nacimiento, eGENERO genero, uint control, uint id_cepa, uint id_genotipo, uint id_tratamiento)
             {
                 throw new NotImplementedException();
             }
+            #endregion
         }
     }
    

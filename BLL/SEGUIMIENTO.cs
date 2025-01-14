@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Data;
 using System.Text;
-using System.IO;
-using BLL.BLL_ENT;
 
 namespace BLL
 {
@@ -118,7 +118,38 @@ namespace BLL
             #region CREATE
             internal int Agregar(uint id_raton, uint id_experimento, DateTime fecha_seguimiento, float peso_raton, float tamano_raton, float vol_tumor)
             {
-                throw new NotImplementedException();
+                DAL.sqlServer sqlServer = new DAL.sqlServer();
+                SqlConnection Conn = new SqlConnection();
+                Conn = sqlServer.AbrirConexion(Conn);
+
+                SqlCommand Cmd = new SqlCommand();
+                Cmd.CommandText = "SEGUIMIENTO_Agregar";
+                Cmd.CommandType = CommandType.StoredProcedure;
+                //aca deberia de autosetearse el idSeguimiento y Eliminado en false
+
+                Cmd.Connection = Conn;
+
+                Cmd.Parameters.Add("idRaton", SqlDbType.Int);
+                Cmd.Parameters["idRaton"].Value = id_raton;
+
+                Cmd.Parameters.Add("idExperimento", SqlDbType.Int);
+                Cmd.Parameters["idExperimento"].Value = id_experimento;
+
+                Cmd.Parameters.Add("FechaSeguimiento", SqlDbType.DateTime);
+                Cmd.Parameters["FechaSeguimiento"].Value = fecha_seguimiento;
+
+                Cmd.Parameters.Add("PesoRaton", SqlDbType.Float);
+                Cmd.Parameters["PesoRaton"].Value = peso_raton;
+
+                Cmd.Parameters.Add("TamanoRaton", SqlDbType.Float);
+                Cmd.Parameters["TamanoRaton"].Value = tamano_raton;
+
+                Cmd.Parameters.Add("VolTumor", SqlDbType.Int);
+                Cmd.Parameters["VolTumor"].Value = vol_tumor;
+
+                int resultado = sqlServer.EjecutarSQL_Int(Cmd);
+                sqlServer.CerrarConexion(Conn);
+                return resultado;
             }
             #endregion
 
@@ -130,21 +161,21 @@ namespace BLL
             #endregion
 
             #region READ
-            internal SEGUIMIENTO_Ent Buscar(uint id)
+            internal BLL_ENT.SEGUIMIENTO_Ent Buscar(uint id)
             {
                 throw new NotImplementedException();
             }
 
-            internal List<SEGUIMIENTO_Ent> BuscarTodos(DateTime fecha_seguimiento)
+            internal List<BLL_ENT.SEGUIMIENTO_Ent> BuscarTodos(DateTime fecha_seguimiento)
             {
                 throw new NotImplementedException();
             }
-            internal List<SEGUIMIENTO_Ent> BuscarTodosxExperimento(uint id_experimento)
+            internal List<BLL_ENT.SEGUIMIENTO_Ent> BuscarTodosxExperimento(uint id_experimento)
             {
                 throw new NotImplementedException();
             }
 
-            internal List<SEGUIMIENTO_Ent> BuscarTodosxRaton(uint id_raton)
+            internal List<BLL_ENT.SEGUIMIENTO_Ent> BuscarTodosxRaton(uint id_raton)
             {
                 throw new NotImplementedException();
             }

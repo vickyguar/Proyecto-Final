@@ -8,8 +8,8 @@ namespace BLL
 {
 	public struct sCANTIDAD {
 
-		private float Magnitud;
-		private string Unidad;
+		public float Magnitud;
+		public string Unidad;
 	}
 	/* sCANTIDAD se utiliza en los diversos tratamientos
 	 * RAYOS -> dosis total, velocidad de entrega, energia de RX

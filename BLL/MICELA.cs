@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Data;
 using System.Text;
-using System.IO;
 
 namespace BLL
 {
@@ -105,10 +106,37 @@ namespace BLL
         public class MICELA_Map
         {
             #region CREATE
-
             public int Agregar(string nombre_micela, bool blanco, sCANTIDAD concentracion, uint id_inyeccion)
             {
-                return 1;
+                DAL.sqlServer sqlServer = new DAL.sqlServer();
+                SqlConnection Conn = new SqlConnection();
+                Conn = sqlServer.AbrirConexion(Conn);
+
+                SqlCommand Cmd = new SqlCommand();
+                Cmd.CommandText = "MICELA_Agregar";
+                Cmd.CommandType = CommandType.StoredProcedure;
+                //aca deberia de autosetearse el idDroga y Eliminado en false
+
+                Cmd.Connection = Conn;
+
+                Cmd.Parameters.Add("NombreMicela", SqlDbType.VarChar);
+                Cmd.Parameters["NombreMicela"].Value = nombre_micela;
+
+                Cmd.Parameters.Add("Blanco", SqlDbType.Int);
+                Cmd.Parameters["Blanco"].Value = blanco;
+
+                //TODO: sCantidad va con 2 ints?
+                Cmd.Parameters.Add("Concentracion.Magnitud", SqlDbType.Float);
+                Cmd.Parameters["Concentracion.Magnitud"].Value = concentracion.Magnitud;
+                Cmd.Parameters.Add("Concentracion.Unidad", SqlDbType.Char,10);
+                Cmd.Parameters["Concentracion.Unidad"].Value = concentracion.Unidad;
+
+                Cmd.Parameters.Add("idInyeccion", SqlDbType.Int);
+                Cmd.Parameters["idInyeccion"].Value = id_inyeccion;
+
+                int resultado = sqlServer.EjecutarSQL_Int(Cmd);
+                sqlServer.CerrarConexion(Conn);
+                return resultado;
             }
             #endregion
 

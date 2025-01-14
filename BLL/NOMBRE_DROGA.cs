@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Data;
 using System.Text;
-using System.IO;
 
 namespace BLL
 {
@@ -79,15 +80,40 @@ namespace BLL
     {
         public class NOMBRE_DROGA_Map
         {
+            #region CREATE
+            public int Agregar(string nombre_droga, uint catalog_num)
+            {
+                DAL.sqlServer sqlServer = new DAL.sqlServer();
+                SqlConnection Conn = new SqlConnection();
+                Conn = sqlServer.AbrirConexion(Conn);
+
+                SqlCommand Cmd = new SqlCommand();
+                Cmd.CommandText = "DROGA_Agregar";
+                Cmd.CommandType = CommandType.StoredProcedure;
+                //aca deberia de autosetearse el idDroga y Eliminado en false
+
+                Cmd.Connection = Conn;
+
+                Cmd.Parameters.Add("NombreDroga", SqlDbType.VarChar);
+                Cmd.Parameters["NombreDroga"].Value = nombre_droga;
+
+                Cmd.Parameters.Add("CatalogNum", SqlDbType.Int);
+                Cmd.Parameters["CatalogNum"].Value = catalog_num;
+
+                int resultado = sqlServer.EjecutarSQL_Int(Cmd);
+                sqlServer.CerrarConexion(Conn);
+                return resultado;
+            }
+            #endregion
+
+            #region UPDATE
             public int Actualizar(uint id, string nombre_droga, uint catalog_num, bool eliminado)
             {
                 return 1;
             }
+            #endregion
 
-            public int Agregar(string nombre_droga, uint catalog_num)
-            {
-                return 1;
-            }
+            #region READ
             public BLL_ENT.NOMBRE_DROGA_Ent Buscar(uint id)
             {
                 return null;
@@ -96,6 +122,10 @@ namespace BLL
             {
                 return null;
             }
+
+            #endregion
+
+            #region DELETE
             public int Borrar(uint id)
             {
                 return 1;
@@ -104,6 +134,7 @@ namespace BLL
             {
                 return 1;
             }
+            #endregion
         }
     }
    

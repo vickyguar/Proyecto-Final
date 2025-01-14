@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Data;
 using System.Text;
-using System.IO;
 
 namespace BLL
 { 
@@ -22,10 +23,10 @@ namespace BLL
     {
         public class PAPER_Class
         {
-            public int Agregar(string titulo, string link, uint id_proyecto, ePUBLICADO publicado = 0, bool eliminado=false)
+            public int Agregar(string titulo, string link, uint id_proyecto, ePUBLICADO publicado = 0)
             {
                 BLL_MAP.PAPER_Map map = new BLL_MAP.PAPER_Map();
-                int resultado = map.Agregar(titulo, link, id_proyecto, publicado, eliminado);
+                int resultado = map.Agregar(titulo, link, id_proyecto, publicado);
                 map = null;
                 return resultado;
             }
@@ -105,9 +106,35 @@ namespace BLL
     { 
         public class PAPER_Map
         {
-            public int Agregar(string titulo, string link, uint id_proyecto, ePUBLICADO publicado, bool eliminado)
+            public int Agregar(string titulo, string link, uint id_proyecto, ePUBLICADO publicado)
             {
-                return 1;
+                DAL.sqlServer sqlServer = new DAL.sqlServer();
+                SqlConnection Conn = new SqlConnection();
+                Conn = sqlServer.AbrirConexion(Conn);
+
+                SqlCommand Cmd = new SqlCommand();
+                Cmd.CommandText = "PAPER_Agregar";
+                Cmd.CommandType = CommandType.StoredProcedure;
+                //aca deberia de autosetearse el idPaper y Eliminado en false
+
+                Cmd.Connection = Conn;
+
+                Cmd.Parameters.Add("idProyecto", SqlDbType.Int);
+                Cmd.Parameters["idProyecto"].Value = id_proyecto;
+
+                Cmd.Parameters.Add("Titulo", SqlDbType.VarChar);
+                Cmd.Parameters["Titulo"].Value = titulo;
+                //var char es hasta 200
+
+                Cmd.Parameters.Add("Link", SqlDbType.VarChar);
+                Cmd.Parameters["Link"].Value = link;
+
+                Cmd.Parameters.Add("Publicado", SqlDbType.Int);
+                Cmd.Parameters["Publicado"].Value = publicado;
+
+                int resultado = sqlServer.EjecutarSQL_Int(Cmd);
+                sqlServer.CerrarConexion(Conn);
+                return resultado;
             }
             public BLL_ENT.PAPER_Ent Buscar(uint id)
             {
